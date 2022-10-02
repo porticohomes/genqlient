@@ -61,6 +61,21 @@ func getSchema(globs StringList) (*ast.Schema, error) {
 		document.Merge(preludeAST)
 	}
 
+	document.Definitions = append(document.Definitions, &ast.Definition{
+		Name: "AWSDate",
+		Kind: ast.Scalar,
+	})
+
+	document.Definitions = append(document.Definitions, &ast.Definition{
+		Name: "AWSDateTime",
+		Kind: ast.Scalar,
+	})
+
+	document.Definitions = append(document.Definitions, &ast.Definition{
+		Name: "AWSTimestamp",
+		Kind: ast.Scalar,
+	})
+
 	schema, graphqlError := validator.ValidateSchemaDocument(document)
 	if graphqlError != nil {
 		return nil, errorf(nil, "invalid schema: %v", graphqlError)
