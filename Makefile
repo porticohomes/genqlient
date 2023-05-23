@@ -11,3 +11,6 @@ check: lint
 	go mod tidy
 
 .PHONY: example
+
+run:
+	go run main.go ./glq2/genqlient.yaml

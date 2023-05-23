@@ -1,0 +1,133 @@
+mutation CreateUnitMutation($id: ID, $propertyUnitsId: ID!, $city: String!, $state: String!, $street1: String!, $street2: String, $zipCode: String!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean) {
+  	createUnit(input: {address: {city: $city, state: $state, street1: $street1, street2: $street2, zipCode: $zipCode}, id: $id, propertyUnitsId: $propertyUnitsId, bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant}) {
+        id
+        propertyUnitsId
+		bedrooms
+		bathrooms
+		sqft
+		isVacant
+        address {
+          city
+          state
+          street1
+          zipCode
+      }
+	}
+}
+
+mutation UpdateUnitMutation($id: ID!, $propertyUnitsId: ID!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean) {
+  	updateUnit(input: {id: $id, propertyUnitsId: $propertyUnitsId,bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant}) {
+		id
+		propertyUnitsId
+		bedrooms
+		bathrooms
+		sqft
+		isVacant
+        address {
+          city
+          state
+          street1
+          zipCode
+      }
+	}
+}
+
+mutation CreatePropertyMutation($id: ID, $owner: String!, $city: String!, $state: String!, $street1: String!, $street2: String, $zipCode: String!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean, $propertyType: PropertyType, $totalUnits: Int, $totalVacantUnits: Int) {
+  	createProperty(input: {address: {city: $city, state: $state, street1: $street1, street2: $street2, zipCode: $zipCode}, owner: $owner, id: $id, bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant, propertyType: $propertyType, totalUnits:$totalUnits, totalVacantUnits: $totalVacantUnits}) {
+        id
+		bedrooms
+		owner
+		bathrooms
+		sqft
+		totalUnits
+		totalVacantUnits
+		isVacant
+        address {
+          city
+          state
+          street1
+          zipCode
+      }
+      propertyType
+	}
+}
+
+mutation UpdatePropertyMutation($id: ID!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean, $propertyType: PropertyType, $totalUnits: Int, $totalVacantUnits: Int) {
+  	updateProperty(input: {id: $id, bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant, propertyType: $propertyType, totalUnits: $totalUnits, totalVacantUnits: $totalVacantUnits}) {
+		id
+		bedrooms
+		owner
+		bathrooms
+		totalUnits
+		totalVacantUnits
+		sqft
+		isVacant
+        address {
+          city
+          state
+          street1
+          zipCode
+      }
+      propertyType
+	}
+}
+
+mutation DeletePropertyMutation($id: ID!) {
+  	deleteProperty(input: {id: $id}) {
+		id
+	}
+}
+
+query GetProperty($id: ID!) {
+  listProperties(limit: 20000, id: $id) {
+     items {
+        id
+		bedrooms
+		bathrooms
+		owner
+		sqft
+		isVacant
+        address {
+          city
+          state
+          street1
+          zipCode
+      }
+      propertyType
+     }
+  }
+}
+
+query ListOwnerPropertiesQuery($owner: String!) {
+  listProperties(limit: 20000, filter: {owner: {eq: $owner}}) {
+    items {
+      owner
+      id
+      address {
+        city
+        state
+        street1
+        zipCode
+      }
+    }
+  }
+}
+
+query ListUnits($id: ID!) {
+  listUnits(limit: 1, id: $id) {
+    items {
+        id
+        propertyUnitsId
+		bedrooms
+		bathrooms
+		sqft
+		isVacant
+        address {
+          city
+          state
+          street1
+          zipCode
+      }
+    }
+  }
+}

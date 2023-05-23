@@ -1,0 +1,2286 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+union SearchableAggregateGenericResult = SearchableAggregateBucketResult | SearchableAggregateScalarResult
+
+type Address   {
+  city: String!
+  state: String!
+  street1: String!
+  street2: String
+  zipCode: String!
+}
+
+type AppSettings   {
+  color: String
+  createdAt: AWSDateTime!
+  favicon: String
+  iamAudience: String!
+  iamClientId: String!
+  iamDomain: String!
+  id: ID!
+  logo: String
+  title: String
+  updatedAt: AWSDateTime!
+}
+
+type Crime  {
+  all: Percentile!
+  createdTime: AWSDateTime!
+  id: ID!
+  marketplaceProperty: MarketplaceProperty!
+  marketplacePropertyCrimeId: ID
+  other: Percentile!
+  property: Percentile!
+  updatedTime: AWSDateTime!
+  violent: Percentile!
+}
+
+type DashboardProperty  {
+  address: Address!
+  amortizationTable(filter: ModelPropertyAmortizationTableFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyAmortizationTableConnection
+  createdTime: AWSDateTime!
+  id: ID!
+  leases(filter: ModelLeaseFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLeaseConnection
+  mortgage(filter: ModelMortgageFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelMortgageConnection
+  name: String!
+  owner: String!
+  pmId: String!
+  property: Property!
+  propertyDashboardPropertyId: ID
+  transactions(filter: ModelTransactionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTransactionConnection
+  updatedTime: AWSDateTime!
+  userExpense(filter: ModelPropertyUserExpenseFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyUserExpenseConnection
+}
+
+type Expenses  {
+  hoa: Float!
+  insurance: Float!
+  managementFee: Float!
+  mortgage: Float!
+  other: Float!
+  tax: Float!
+  totalExpense: Float!
+}
+
+type FavoriteMarketplaceProperty  {
+  createdTime: AWSDateTime!
+  id: ID!
+  marketplacePropertyFavoritesId: ID
+  owner: String!
+  property: MarketplaceProperty!
+  updatedTime: AWSDateTime!
+}
+
+type Lease  {
+  createdTime: AWSDateTime!
+  dashboardPropertyLeasesId: ID
+  endDate: AWSDate
+  id: ID!
+  isActive: Boolean
+  owner: String!
+  property: DashboardProperty!
+  rent: Int
+  startDate: AWSDate!
+  term: Term
+  updatedTime: AWSDateTime!
+}
+
+type MarketPlacePropertyExpenses  {
+  hoa: Float
+  insurance: Float
+  managementFee: Float
+  other: Float
+  tax: Float
+}
+
+type MarketplaceProperty  {
+  address: Address!
+  askingPrice: Int!
+  createdTime: AWSDateTime!
+  crime(filter: ModelCrimeFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCrimeConnection
+  description: String
+  expenses: MarketPlacePropertyExpenses
+  favorites(filter: ModelFavoriteMarketplacePropertyFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelFavoriteMarketplacePropertyConnection
+  id: ID!
+  offers(filter: ModelOfferFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelOfferConnection
+  owner: String!
+  pictures: [Picture]
+  property: Property!
+  propertyMarketplacePropertyId: ID
+  readPermissions: [String]
+  rent: Int
+  shareWith: [String]
+  status: MarketPlacePropertyStatus!
+  updatedTime: AWSDateTime!
+}
+
+type ModelAppSettingsConnection   {
+  items: [AppSettings]!
+  nextToken: String
+}
+
+type ModelCrimeConnection  {
+  items: [Crime]!
+  nextToken: String
+}
+
+type ModelDashboardPropertyConnection  {
+  items: [DashboardProperty]!
+  nextToken: String
+}
+
+type ModelFavoriteMarketplacePropertyConnection  {
+  items: [FavoriteMarketplaceProperty]!
+  nextToken: String
+}
+
+type ModelLeaseConnection  {
+  items: [Lease]!
+  nextToken: String
+}
+
+type ModelMarketplacePropertyConnection  {
+  items: [MarketplaceProperty]!
+  nextToken: String
+}
+
+type ModelMortgageConnection  {
+  items: [Mortgage]!
+  nextToken: String
+}
+
+type ModelOfferConnection  {
+  items: [Offer]!
+  nextToken: String
+}
+
+type ModelOwnerReportConnection  {
+  items: [OwnerReport]!
+  nextToken: String
+}
+
+type ModelPropertyAmortizationTableConnection  {
+  items: [PropertyAmortizationTable]!
+  nextToken: String
+}
+
+type ModelPropertyConnection  {
+  items: [Property]!
+  nextToken: String
+}
+
+type ModelPropertyExtendedAddressConnection  {
+  items: [PropertyExtendedAddress]!
+  nextToken: String
+}
+
+type ModelPropertyPurchaseHistoryConnection  {
+  items: [PropertyPurchaseHistory]!
+  nextToken: String
+}
+
+type ModelPropertyRentalConnection  {
+  items: [PropertyRental]!
+  nextToken: String
+}
+
+type ModelPropertyUserExpenseConnection  {
+  items: [PropertyUserExpense]!
+  nextToken: String
+}
+
+type ModelPropertyValuationConnection  {
+  items: [PropertyValuation]!
+  nextToken: String
+}
+
+type ModelReportConnection  {
+  items: [Report]!
+  nextToken: String
+}
+
+type ModelTransactionConnection  {
+  items: [Transaction]!
+  nextToken: String
+}
+
+type ModelUnitConnection  {
+  items: [Unit]!
+  nextToken: String
+}
+
+type Mortgage  {
+  amount: Float!
+  apn: String!
+  createdTime: AWSDateTime!
+  dashboardPropertyMortgageId: ID
+  grantor: String!
+  id: ID!
+  mortgageDueDay: Int!
+  mortgageType: MortgageType!
+  owner: String!
+  property: DashboardProperty!
+  rate: Float!
+  startDate: AWSDate!
+  term: Int!
+  updatedTime: AWSDateTime!
+}
+
+type Mutation {
+  createAppSettings(condition: ModelAppSettingsConditionInput, input: CreateAppSettingsInput!): AppSettings
+  createCrime(condition: ModelCrimeConditionInput, input: CreateCrimeInput!): Crime
+  createDashboardProperty(condition: ModelDashboardPropertyConditionInput, input: CreateDashboardPropertyInput!): DashboardProperty
+  createFavoriteMarketplaceProperty(condition: ModelFavoriteMarketplacePropertyConditionInput, input: CreateFavoriteMarketplacePropertyInput!): FavoriteMarketplaceProperty
+  createLease(condition: ModelLeaseConditionInput, input: CreateLeaseInput!): Lease
+  createMarketplaceProperty(condition: ModelMarketplacePropertyConditionInput, input: CreateMarketplacePropertyInput!): MarketplaceProperty
+  createMortgage(condition: ModelMortgageConditionInput, input: CreateMortgageInput!): Mortgage
+  createOffer(condition: ModelOfferConditionInput, input: CreateOfferInput!): Offer
+  createOwnerReport(condition: ModelOwnerReportConditionInput, input: CreateOwnerReportInput!): OwnerReport
+  createProperty(condition: ModelPropertyConditionInput, input: CreatePropertyInput!): Property
+  createPropertyAmortizationTable(condition: ModelPropertyAmortizationTableConditionInput, input: CreatePropertyAmortizationTableInput!): PropertyAmortizationTable
+  createPropertyExtendedAddress(condition: ModelPropertyExtendedAddressConditionInput, input: CreatePropertyExtendedAddressInput!): PropertyExtendedAddress
+  createPropertyPurchaseHistory(condition: ModelPropertyPurchaseHistoryConditionInput, input: CreatePropertyPurchaseHistoryInput!): PropertyPurchaseHistory
+  createPropertyRental(condition: ModelPropertyRentalConditionInput, input: CreatePropertyRentalInput!): PropertyRental
+  createPropertyUserExpense(condition: ModelPropertyUserExpenseConditionInput, input: CreatePropertyUserExpenseInput!): PropertyUserExpense
+  createPropertyValuation(condition: ModelPropertyValuationConditionInput, input: CreatePropertyValuationInput!): PropertyValuation
+  createReport(condition: ModelReportConditionInput, input: CreateReportInput!): Report
+  createTransaction(condition: ModelTransactionConditionInput, input: CreateTransactionInput!): Transaction
+  createUnit(condition: ModelUnitConditionInput, input: CreateUnitInput!): Unit
+  deleteAppSettings(condition: ModelAppSettingsConditionInput, input: DeleteAppSettingsInput!): AppSettings
+  deleteCrime(condition: ModelCrimeConditionInput, input: DeleteCrimeInput!): Crime
+  deleteDashboardProperty(condition: ModelDashboardPropertyConditionInput, input: DeleteDashboardPropertyInput!): DashboardProperty
+  deleteFavoriteMarketplaceProperty(condition: ModelFavoriteMarketplacePropertyConditionInput, input: DeleteFavoriteMarketplacePropertyInput!): FavoriteMarketplaceProperty
+  deleteLease(condition: ModelLeaseConditionInput, input: DeleteLeaseInput!): Lease
+  deleteMarketplaceProperty(condition: ModelMarketplacePropertyConditionInput, input: DeleteMarketplacePropertyInput!): MarketplaceProperty
+  deleteMortgage(condition: ModelMortgageConditionInput, input: DeleteMortgageInput!): Mortgage
+  deleteOffer(condition: ModelOfferConditionInput, input: DeleteOfferInput!): Offer
+  deleteOwnerReport(condition: ModelOwnerReportConditionInput, input: DeleteOwnerReportInput!): OwnerReport
+  deleteProperty(condition: ModelPropertyConditionInput, input: DeletePropertyInput!): Property
+  deletePropertyAmortizationTable(condition: ModelPropertyAmortizationTableConditionInput, input: DeletePropertyAmortizationTableInput!): PropertyAmortizationTable
+  deletePropertyExtendedAddress(condition: ModelPropertyExtendedAddressConditionInput, input: DeletePropertyExtendedAddressInput!): PropertyExtendedAddress
+  deletePropertyPurchaseHistory(condition: ModelPropertyPurchaseHistoryConditionInput, input: DeletePropertyPurchaseHistoryInput!): PropertyPurchaseHistory
+  deletePropertyRental(condition: ModelPropertyRentalConditionInput, input: DeletePropertyRentalInput!): PropertyRental
+  deletePropertyUserExpense(condition: ModelPropertyUserExpenseConditionInput, input: DeletePropertyUserExpenseInput!): PropertyUserExpense
+  deletePropertyValuation(condition: ModelPropertyValuationConditionInput, input: DeletePropertyValuationInput!): PropertyValuation
+  deleteReport(condition: ModelReportConditionInput, input: DeleteReportInput!): Report
+  deleteTransaction(condition: ModelTransactionConditionInput, input: DeleteTransactionInput!): Transaction
+  deleteUnit(condition: ModelUnitConditionInput, input: DeleteUnitInput!): Unit
+  updateAppSettings(condition: ModelAppSettingsConditionInput, input: UpdateAppSettingsInput!): AppSettings
+  updateCrime(condition: ModelCrimeConditionInput, input: UpdateCrimeInput!): Crime
+  updateDashboardProperty(condition: ModelDashboardPropertyConditionInput, input: UpdateDashboardPropertyInput!): DashboardProperty
+  updateFavoriteMarketplaceProperty(condition: ModelFavoriteMarketplacePropertyConditionInput, input: UpdateFavoriteMarketplacePropertyInput!): FavoriteMarketplaceProperty
+  updateLease(condition: ModelLeaseConditionInput, input: UpdateLeaseInput!): Lease
+  updateMarketplaceProperty(condition: ModelMarketplacePropertyConditionInput, input: UpdateMarketplacePropertyInput!): MarketplaceProperty
+  updateMortgage(condition: ModelMortgageConditionInput, input: UpdateMortgageInput!): Mortgage
+  updateOffer(condition: ModelOfferConditionInput, input: UpdateOfferInput!): Offer
+  updateOwnerReport(condition: ModelOwnerReportConditionInput, input: UpdateOwnerReportInput!): OwnerReport
+  updateProperty(condition: ModelPropertyConditionInput, input: UpdatePropertyInput!): Property
+  updatePropertyAmortizationTable(condition: ModelPropertyAmortizationTableConditionInput, input: UpdatePropertyAmortizationTableInput!): PropertyAmortizationTable
+  updatePropertyExtendedAddress(condition: ModelPropertyExtendedAddressConditionInput, input: UpdatePropertyExtendedAddressInput!): PropertyExtendedAddress
+  updatePropertyPurchaseHistory(condition: ModelPropertyPurchaseHistoryConditionInput, input: UpdatePropertyPurchaseHistoryInput!): PropertyPurchaseHistory
+  updatePropertyRental(condition: ModelPropertyRentalConditionInput, input: UpdatePropertyRentalInput!): PropertyRental
+  updatePropertyUserExpense(condition: ModelPropertyUserExpenseConditionInput, input: UpdatePropertyUserExpenseInput!): PropertyUserExpense
+  updatePropertyValuation(condition: ModelPropertyValuationConditionInput, input: UpdatePropertyValuationInput!): PropertyValuation
+  updateReport(condition: ModelReportConditionInput, input: UpdateReportInput!): Report
+  updateTransaction(condition: ModelTransactionConditionInput, input: UpdateTransactionInput!): Transaction
+  updateUnit(condition: ModelUnitConditionInput, input: UpdateUnitInput!): Unit
+}
+
+type Offer  {
+  bid: Int
+  buyer: String!
+  createdTime: AWSDateTime!
+  id: ID!
+  marketplacePropertyOffersId: ID
+  property: MarketplaceProperty!
+  seller: String
+  status: OfferStatus!
+  updatedTime: AWSDateTime!
+}
+
+type OwnerReport  {
+  createdAt: AWSDateTime!
+  id: ID!
+  month: Int!
+  owner: String!
+  reports(filter: ModelReportFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelReportConnection
+  updatedAt: AWSDateTime!
+  year: Int!
+}
+
+type Percentile   {
+  county: Int!
+  incidents: Int!
+  national: Int!
+}
+
+type Picture   {
+  rank: String
+  url: String!
+}
+
+type PreviousMonthlyMeasures  {
+  appreciation: Float!
+  homeValue: Float!
+  totalEquity: Float!
+}
+
+type Property  {
+  DashboardProperty(filter: ModelDashboardPropertyFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelDashboardPropertyConnection
+  MarketplaceProperty(filter: ModelMarketplacePropertyFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelMarketplacePropertyConnection
+  address: Address!
+  bathrooms: Float
+  bedrooms: Int
+  createdTime: AWSDateTime!
+  extendedAddress(filter: ModelPropertyExtendedAddressFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyExtendedAddressConnection
+  id: ID!
+  isVacant: Boolean
+  owner: String!
+  pictures: [Picture]
+  propertyRental(filter: ModelPropertyRentalFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyRentalConnection
+  propertyType: PropertyType
+  propertyValuation(filter: ModelPropertyValuationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyValuationConnection
+  purchaseHistory(filter: ModelPropertyPurchaseHistoryFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyPurchaseHistoryConnection
+  sqft: Int
+  totalUnits: Int
+  totalVacantUnits: Int
+  units(filter: ModelUnitFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUnitConnection
+  updatedTime: AWSDateTime!
+  yearBuilt: Int
+}
+
+type PropertyAmortizationTable  {
+  createdTime: AWSDateTime!
+  dashboardPropertyAmortizationTableId: ID!
+  id: ID!
+  interest: Float!
+  mortgageId: String!
+  owner: String!
+  payment: Float!
+  period: Int!
+  principal: Float!
+  property: DashboardProperty!
+  totalPrincipal: Float!
+  transactionDate: AWSDate!
+  updatedTime: AWSDateTime!
+}
+
+type PropertyExtendedAddress  {
+  city: String
+  createdTime: AWSDateTime!
+  fips: String
+  geoid: String
+  id: ID!
+  lat: Float
+  lon: Float
+  property: Property!
+  propertyExtendedAddressId: ID
+  state: String
+  street1: String
+  street2: String
+  updatedTime: AWSDateTime!
+  zipCode: String
+}
+
+type PropertyPurchaseHistory  {
+  amount: Float!
+  closingCost: Float
+  createdTime: AWSDateTime!
+  date: AWSDate
+  homeImprovementCost: Float
+  id: ID!
+  property: Property!
+  propertyPurchaseHistoryId: ID
+  updatedTime: AWSDateTime!
+}
+
+type PropertyRental  {
+  computedDate: AWSDate!
+  createdTime: AWSDateTime!
+  fsd: Float
+  id: ID!
+  priceMean: Int
+  property: Property!
+  propertyPropertyRentalId: ID!
+  updatedTime: AWSDateTime!
+}
+
+type PropertyUserExpense  {
+  amount: Float!
+  category: ExpenseCategory!
+  createdTime: AWSDateTime!
+  dashboardPropertyUserExpenseId: ID
+  id: ID!
+  owner: String!
+  property: DashboardProperty!
+  startDate: AWSDate!
+  updatedTime: AWSDateTime!
+}
+
+type PropertyValuation  {
+  createdTime: AWSDateTime!
+  fsd: Float
+  id: ID!
+  priceLower: Int
+  priceMean: Int
+  priceUpper: Int
+  property: Property!
+  propertyPropertyValuationId: ID!
+  updatedTime: AWSDateTime!
+  valuationDate: AWSDate!
+}
+
+type Query {
+  getAppSettings(id: ID!): AppSettings
+  getDashboardProperty(id: ID!): DashboardProperty
+  getFavoriteMarketplaceProperty(id: ID!): FavoriteMarketplaceProperty
+  getLease(id: ID!): Lease
+  getMarketplaceProperty(id: ID!): MarketplaceProperty
+  getMortgage(id: ID!): Mortgage
+  getOffer(id: ID!): Offer
+  getOwnerReport(id: ID!): OwnerReport
+  getPropertyAmortizationTable(id: ID!): PropertyAmortizationTable
+  getPropertyUserExpense(id: ID!): PropertyUserExpense
+  getReport(id: ID!): Report
+  getTransaction(id: ID!): Transaction
+  listAmortizationTableByMortgageId(filter: ModelPropertyAmortizationTableFilterInput, limit: Int, mortgageId: String!, nextToken: String, period: ModelIntKeyConditionInput, sortDirection: ModelSortDirection): ModelPropertyAmortizationTableConnection
+  listAmortizationTableByPropertyId(dashboardPropertyAmortizationTableId: ID!, filter: ModelPropertyAmortizationTableFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection, transactionDate: ModelStringKeyConditionInput): ModelPropertyAmortizationTableConnection
+  listAppSettings(filter: ModelAppSettingsFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelAppSettingsConnection
+  listCrime(filter: ModelCrimeFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCrimeConnection
+  listDashboardProperties(filter: ModelDashboardPropertyFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelDashboardPropertyConnection
+  listDashboardPropertiesByPm(filter: ModelDashboardPropertyFilterInput, limit: Int, nextToken: String, pmId: String!, sortDirection: ModelSortDirection): ModelDashboardPropertyConnection
+  listDashboardPropertyByOwner(filter: ModelDashboardPropertyFilterInput, limit: Int, nextToken: String, owner: String!, sortDirection: ModelSortDirection): ModelDashboardPropertyConnection
+  listFavoriteMarketplaceProperties(filter: ModelFavoriteMarketplacePropertyFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelFavoriteMarketplacePropertyConnection
+  listLeases(filter: ModelLeaseFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLeaseConnection
+  listMarketplaceProperties(filter: ModelMarketplacePropertyFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelMarketplacePropertyConnection
+  listMortgages(filter: ModelMortgageFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelMortgageConnection
+  listOffers(filter: ModelOfferFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelOfferConnection
+  listOwnerReports(filter: ModelOwnerReportFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelOwnerReportConnection
+  listProperties(filter: ModelPropertyFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyConnection
+  listPropertyAmortizationTables(filter: ModelPropertyAmortizationTableFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyAmortizationTableConnection
+  listPropertyExtendedAddresses(filter: ModelPropertyExtendedAddressFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyExtendedAddressConnection
+  listPropertyPurchaseHistories(filter: ModelPropertyPurchaseHistoryFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyPurchaseHistoryConnection
+  listPropertyRental(filter: ModelPropertyRentalFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyRentalConnection
+  listPropertyRentalByPropertyId(computedDate: ModelStringKeyConditionInput, filter: ModelPropertyRentalFilterInput, limit: Int, nextToken: String, propertyPropertyRentalId: ID!, sortDirection: ModelSortDirection): ModelPropertyRentalConnection
+  listPropertyTransactionByPropertyId(dashboardPropertyTransactionsId: ID!, filter: ModelTransactionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection, transactionDate: ModelStringKeyConditionInput): ModelTransactionConnection
+  listPropertyUserExpenses(filter: ModelPropertyUserExpenseFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyUserExpenseConnection
+  listPropertyValuationByPropertyId(filter: ModelPropertyValuationFilterInput, limit: Int, nextToken: String, propertyPropertyValuationId: ID!, sortDirection: ModelSortDirection, valuationDate: ModelStringKeyConditionInput): ModelPropertyValuationConnection
+  listPropertyValuations(filter: ModelPropertyValuationFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPropertyValuationConnection
+  listReports(filter: ModelReportFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelReportConnection
+  listTransactions(filter: ModelTransactionFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTransactionConnection
+  listUnits(filter: ModelUnitFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUnitConnection
+  searchTransactions(aggregates: [SearchableTransactionAggregationInput], filter: SearchableTransactionFilterInput, from: Int, limit: Int, nextToken: String, sort: [SearchableTransactionSortInput]): SearchableTransactionConnection
+}
+
+type Report  {
+  appreciation: Float!
+  createdAt: AWSDateTime!
+  expenses: Expenses!
+  homeValue: Float!
+  id: ID!
+  name: String!
+  netCashFlow: Float!
+  noi: Float!
+  occupancy: Int!
+  owner: String!
+  ownerReport: OwnerReport!
+  ownerReportReportsId: ID
+  previousMonthlyMeasures: PreviousMonthlyMeasures!
+  reportType: ReportType!
+  totalEquity: Float!
+  totalProperties: Int!
+  totalRent: Float!
+  updatedAt: AWSDateTime!
+  version: Int!
+  yearlyMeasures: YearlyMeasures!
+}
+
+type SearchableAggregateBucketResult  {
+  buckets: [SearchableAggregateBucketResultItem]
+}
+
+type SearchableAggregateBucketResultItem  {
+  doc_count: Int!
+  key: String!
+}
+
+type SearchableAggregateResult  {
+  name: String!
+  result: SearchableAggregateGenericResult
+}
+
+type SearchableAggregateScalarResult  {
+  value: Float!
+}
+
+type SearchableTransactionConnection  {
+  aggregateItems: [SearchableAggregateResult]!
+  items: [Transaction]!
+  nextToken: String
+  total: Int
+}
+
+type Transaction  {
+  amount: Float!
+  category: Category!
+  createdTime: AWSDateTime!
+  dashboardPropertyTransactionsId: ID!
+  description: String
+  id: ID!
+  label: Label
+  owner: String!
+  property: DashboardProperty!
+  transactionDate: AWSDate!
+  type: String!
+  updatedTime: AWSDateTime!
+}
+
+type Unit  {
+  address: Address!
+  bathrooms: Float
+  bedrooms: Int
+  createdTime: AWSDateTime!
+  id: ID!
+  isVacant: Boolean
+  property: Property!
+  propertyUnitsId: ID
+  sqft: Int
+  updatedTime: AWSDateTime!
+}
+
+type YearlyMeasures  {
+  capRate: Float!
+  cashOnCash: Float!
+}
+
+enum Category {
+  auto_and_travel
+  legal_and_professional_fees
+  maintenance
+  management_fee
+  mortgage
+  other
+  property_hoa
+  property_insurance
+  property_tax
+  rent
+  rental_registration
+  supplies
+  utilities
+}
+
+enum ExpenseCategory {
+  other
+  property_hoa
+  property_insurance
+  property_tax
+}
+
+enum ExpenseType {
+  one_time
+  recurring
+}
+
+enum Label {
+  estimated
+  manual
+  manual_recurring
+  pm
+}
+
+enum MarketPlacePropertyStatus {
+  active
+  canceled
+  newLead
+  pendingListing
+  pendingSaleApproval
+  sold
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+enum MortgageType {
+  purchase
+  refinance
+}
+
+enum OfferStatus {
+  accepted
+  depositSubmitted
+  newLead
+  offerMade
+  psaSigned
+  rejected
+  won
+}
+
+enum PropertyType {
+  condo
+  multiFamily
+  singleFamily
+  townhouse
+  unknown
+}
+
+enum ReportType {
+  portfolio
+  property
+}
+
+enum SearchableAggregateType {
+  avg
+  max
+  min
+  sum
+  terms
+}
+
+enum SearchableSortDirection {
+  asc
+  desc
+}
+
+enum SearchableTransactionAggregateField {
+  amount
+  category
+  createdTime
+  dashboardPropertyTransactionsId
+  description
+  id
+  label
+  owner
+  transactionDate
+  type
+  updatedTime
+}
+
+enum SearchableTransactionSortableFields {
+  amount
+  createdTime
+  dashboardPropertyTransactionsId
+  description
+  id
+  owner
+  transactionDate
+  type
+  updatedTime
+}
+
+enum Term {
+  fixed
+  monthToMonth
+}
+
+input AddressInput {
+  city: String!
+  state: String!
+  street1: String!
+  street2: String
+  zipCode: String!
+}
+
+input CreateAppSettingsInput {
+  color: String
+  favicon: String
+  iamAudience: String!
+  iamClientId: String!
+  iamDomain: String!
+  id: ID
+  logo: String
+  title: String
+}
+
+input CreateCrimeInput {
+  all: PercentileInput!
+  createdTime: AWSDateTime
+  id: ID
+  marketplacePropertyCrimeId: ID
+  other: PercentileInput!
+  property: PercentileInput!
+  updatedTime: AWSDateTime
+  violent: PercentileInput!
+}
+
+input CreateDashboardPropertyInput {
+  address: AddressInput!
+  createdTime: AWSDateTime
+  id: ID
+  name: String!
+  owner: String!
+  pmId: String!
+  propertyDashboardPropertyId: ID
+  updatedTime: AWSDateTime
+}
+
+input CreateFavoriteMarketplacePropertyInput {
+  createdTime: AWSDateTime
+  id: ID
+  marketplacePropertyFavoritesId: ID
+  owner: String!
+  updatedTime: AWSDateTime
+}
+
+input CreateLeaseInput {
+  createdTime: AWSDateTime
+  dashboardPropertyLeasesId: ID
+  endDate: AWSDate
+  id: ID
+  isActive: Boolean
+  owner: String!
+  rent: Int
+  startDate: AWSDate!
+  term: Term
+  updatedTime: AWSDateTime
+}
+
+input CreateMarketplacePropertyInput {
+  address: AddressInput!
+  askingPrice: Int!
+  createdTime: AWSDateTime
+  description: String
+  expenses: MarketPlacePropertyExpensesInput
+  id: ID
+  owner: String!
+  pictures: [PictureInput]
+  propertyMarketplacePropertyId: ID
+  readPermissions: [String]
+  rent: Int
+  shareWith: [String]
+  status: MarketPlacePropertyStatus!
+  updatedTime: AWSDateTime
+}
+
+input CreateMortgageInput {
+  amount: Float!
+  apn: String!
+  createdTime: AWSDateTime
+  dashboardPropertyMortgageId: ID
+  grantor: String!
+  id: ID
+  mortgageDueDay: Int!
+  mortgageType: MortgageType!
+  owner: String!
+  rate: Float!
+  startDate: AWSDate!
+  term: Int!
+  updatedTime: AWSDateTime
+}
+
+input CreateOfferInput {
+  bid: Int
+  buyer: String!
+  createdTime: AWSDateTime
+  id: ID
+  marketplacePropertyOffersId: ID
+  seller: String
+  status: OfferStatus!
+  updatedTime: AWSDateTime
+}
+
+input CreateOwnerReportInput {
+  id: ID
+  month: Int!
+  owner: String!
+  year: Int!
+}
+
+input CreatePropertyAmortizationTableInput {
+  createdTime: AWSDateTime
+  dashboardPropertyAmortizationTableId: ID!
+  id: ID
+  interest: Float!
+  mortgageId: String!
+  owner: String!
+  payment: Float!
+  period: Int!
+  principal: Float!
+  totalPrincipal: Float!
+  transactionDate: AWSDate!
+  updatedTime: AWSDateTime
+}
+
+input CreatePropertyExtendedAddressInput {
+  city: String
+  createdTime: AWSDateTime
+  fips: String
+  geoid: String
+  id: ID
+  lat: Float
+  lon: Float
+  propertyExtendedAddressId: ID
+  state: String
+  street1: String
+  street2: String
+  updatedTime: AWSDateTime
+  zipCode: String
+}
+
+input CreatePropertyInput {
+  address: AddressInput!
+  bathrooms: Float
+  bedrooms: Int
+  createdTime: AWSDateTime
+  id: ID
+  isVacant: Boolean
+  owner: String!
+  pictures: [PictureInput]
+  propertyType: PropertyType
+  sqft: Int
+  totalUnits: Int
+  totalVacantUnits: Int
+  updatedTime: AWSDateTime
+  yearBuilt: Int
+}
+
+input CreatePropertyPurchaseHistoryInput {
+  amount: Float!
+  closingCost: Float
+  createdTime: AWSDateTime
+  date: AWSDate
+  homeImprovementCost: Float
+  id: ID
+  propertyPurchaseHistoryId: ID
+  updatedTime: AWSDateTime
+}
+
+input CreatePropertyRentalInput {
+  computedDate: AWSDate!
+  createdTime: AWSDateTime
+  fsd: Float
+  id: ID
+  priceMean: Int
+  propertyPropertyRentalId: ID!
+  updatedTime: AWSDateTime
+}
+
+input CreatePropertyUserExpenseInput {
+  amount: Float!
+  category: ExpenseCategory!
+  createdTime: AWSDateTime
+  dashboardPropertyUserExpenseId: ID
+  id: ID
+  owner: String!
+  startDate: AWSDate!
+  updatedTime: AWSDateTime
+}
+
+input CreatePropertyValuationInput {
+  createdTime: AWSDateTime
+  fsd: Float
+  id: ID
+  priceLower: Int
+  priceMean: Int
+  priceUpper: Int
+  propertyPropertyValuationId: ID!
+  updatedTime: AWSDateTime
+  valuationDate: AWSDate!
+}
+
+input CreateReportInput {
+  appreciation: Float!
+  expenses: ExpensesInput!
+  homeValue: Float!
+  id: ID
+  name: String!
+  netCashFlow: Float!
+  noi: Float!
+  occupancy: Int!
+  owner: String!
+  ownerReportReportsId: ID
+  previousMonthlyMeasures: PreviousMonthlyMeasuresInput!
+  reportType: ReportType!
+  totalEquity: Float!
+  totalProperties: Int!
+  totalRent: Float!
+  version: Int!
+  yearlyMeasures: YearlyMeasuresInput!
+}
+
+input CreateTransactionInput {
+  amount: Float!
+  category: Category!
+  createdTime: AWSDateTime
+  dashboardPropertyTransactionsId: ID!
+  description: String
+  id: ID
+  label: Label
+  owner: String!
+  transactionDate: AWSDate!
+  type: String!
+  updatedTime: AWSDateTime
+}
+
+input CreateUnitInput {
+  address: AddressInput!
+  bathrooms: Float
+  bedrooms: Int
+  createdTime: AWSDateTime
+  id: ID
+  isVacant: Boolean
+  propertyUnitsId: ID
+  sqft: Int
+  updatedTime: AWSDateTime
+}
+
+input DeleteAppSettingsInput {
+  id: ID!
+}
+
+input DeleteCrimeInput {
+  id: ID!
+}
+
+input DeleteDashboardPropertyInput {
+  id: ID!
+}
+
+input DeleteFavoriteMarketplacePropertyInput {
+  id: ID!
+}
+
+input DeleteLeaseInput {
+  id: ID!
+}
+
+input DeleteMarketplacePropertyInput {
+  id: ID!
+}
+
+input DeleteMortgageInput {
+  id: ID!
+}
+
+input DeleteOfferInput {
+  id: ID!
+}
+
+input DeleteOwnerReportInput {
+  id: ID!
+}
+
+input DeletePropertyAmortizationTableInput {
+  id: ID!
+}
+
+input DeletePropertyExtendedAddressInput {
+  id: ID!
+}
+
+input DeletePropertyInput {
+  id: ID!
+}
+
+input DeletePropertyPurchaseHistoryInput {
+  id: ID!
+}
+
+input DeletePropertyRentalInput {
+  id: ID!
+}
+
+input DeletePropertyUserExpenseInput {
+  id: ID!
+}
+
+input DeletePropertyValuationInput {
+  id: ID!
+}
+
+input DeleteReportInput {
+  id: ID!
+}
+
+input DeleteTransactionInput {
+  id: ID!
+}
+
+input DeleteUnitInput {
+  id: ID!
+}
+
+input ExpensesInput {
+  hoa: Float!
+  insurance: Float!
+  managementFee: Float!
+  mortgage: Float!
+  other: Float!
+  tax: Float!
+  totalExpense: Float!
+}
+
+input MarketPlacePropertyExpensesInput {
+  hoa: Float
+  insurance: Float
+  managementFee: Float
+  other: Float
+  tax: Float
+}
+
+input ModelAppSettingsConditionInput {
+  and: [ModelAppSettingsConditionInput]
+  color: ModelStringInput
+  favicon: ModelStringInput
+  iamAudience: ModelStringInput
+  iamClientId: ModelStringInput
+  iamDomain: ModelStringInput
+  logo: ModelStringInput
+  not: ModelAppSettingsConditionInput
+  or: [ModelAppSettingsConditionInput]
+  title: ModelStringInput
+}
+
+input ModelAppSettingsFilterInput {
+  and: [ModelAppSettingsFilterInput]
+  color: ModelStringInput
+  favicon: ModelStringInput
+  iamAudience: ModelStringInput
+  iamClientId: ModelStringInput
+  iamDomain: ModelStringInput
+  id: ModelIDInput
+  logo: ModelStringInput
+  not: ModelAppSettingsFilterInput
+  or: [ModelAppSettingsFilterInput]
+  title: ModelStringInput
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelCategoryInput {
+  eq: Category
+  ne: Category
+}
+
+input ModelCrimeConditionInput {
+  and: [ModelCrimeConditionInput]
+  createdTime: ModelStringInput
+  marketplacePropertyCrimeId: ModelIDInput
+  not: ModelCrimeConditionInput
+  or: [ModelCrimeConditionInput]
+  updatedTime: ModelStringInput
+}
+
+input ModelCrimeFilterInput {
+  and: [ModelCrimeFilterInput]
+  createdTime: ModelStringInput
+  id: ModelIDInput
+  marketplacePropertyCrimeId: ModelIDInput
+  not: ModelCrimeFilterInput
+  or: [ModelCrimeFilterInput]
+  updatedTime: ModelStringInput
+}
+
+input ModelDashboardPropertyConditionInput {
+  and: [ModelDashboardPropertyConditionInput]
+  createdTime: ModelStringInput
+  name: ModelStringInput
+  not: ModelDashboardPropertyConditionInput
+  or: [ModelDashboardPropertyConditionInput]
+  owner: ModelStringInput
+  pmId: ModelStringInput
+  propertyDashboardPropertyId: ModelIDInput
+  updatedTime: ModelStringInput
+}
+
+input ModelDashboardPropertyFilterInput {
+  and: [ModelDashboardPropertyFilterInput]
+  createdTime: ModelStringInput
+  id: ModelIDInput
+  name: ModelStringInput
+  not: ModelDashboardPropertyFilterInput
+  or: [ModelDashboardPropertyFilterInput]
+  owner: ModelStringInput
+  pmId: ModelStringInput
+  propertyDashboardPropertyId: ModelIDInput
+  updatedTime: ModelStringInput
+}
+
+input ModelExpenseCategoryInput {
+  eq: ExpenseCategory
+  ne: ExpenseCategory
+}
+
+input ModelFavoriteMarketplacePropertyConditionInput {
+  and: [ModelFavoriteMarketplacePropertyConditionInput]
+  createdTime: ModelStringInput
+  marketplacePropertyFavoritesId: ModelIDInput
+  not: ModelFavoriteMarketplacePropertyConditionInput
+  or: [ModelFavoriteMarketplacePropertyConditionInput]
+  owner: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelFavoriteMarketplacePropertyFilterInput {
+  and: [ModelFavoriteMarketplacePropertyFilterInput]
+  createdTime: ModelStringInput
+  id: ModelIDInput
+  marketplacePropertyFavoritesId: ModelIDInput
+  not: ModelFavoriteMarketplacePropertyFilterInput
+  or: [ModelFavoriteMarketplacePropertyFilterInput]
+  owner: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelIntKeyConditionInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+}
+
+input ModelLabelInput {
+  eq: Label
+  ne: Label
+}
+
+input ModelLeaseConditionInput {
+  and: [ModelLeaseConditionInput]
+  createdTime: ModelStringInput
+  dashboardPropertyLeasesId: ModelIDInput
+  endDate: ModelStringInput
+  isActive: ModelBooleanInput
+  not: ModelLeaseConditionInput
+  or: [ModelLeaseConditionInput]
+  owner: ModelStringInput
+  rent: ModelIntInput
+  startDate: ModelStringInput
+  term: ModelTermInput
+  updatedTime: ModelStringInput
+}
+
+input ModelLeaseFilterInput {
+  and: [ModelLeaseFilterInput]
+  createdTime: ModelStringInput
+  dashboardPropertyLeasesId: ModelIDInput
+  endDate: ModelStringInput
+  id: ModelIDInput
+  isActive: ModelBooleanInput
+  not: ModelLeaseFilterInput
+  or: [ModelLeaseFilterInput]
+  owner: ModelStringInput
+  rent: ModelIntInput
+  startDate: ModelStringInput
+  term: ModelTermInput
+  updatedTime: ModelStringInput
+}
+
+input ModelMarketPlacePropertyStatusInput {
+  eq: MarketPlacePropertyStatus
+  ne: MarketPlacePropertyStatus
+}
+
+input ModelMarketplacePropertyConditionInput {
+  and: [ModelMarketplacePropertyConditionInput]
+  askingPrice: ModelIntInput
+  createdTime: ModelStringInput
+  description: ModelStringInput
+  not: ModelMarketplacePropertyConditionInput
+  or: [ModelMarketplacePropertyConditionInput]
+  owner: ModelStringInput
+  propertyMarketplacePropertyId: ModelIDInput
+  readPermissions: ModelStringInput
+  rent: ModelIntInput
+  shareWith: ModelStringInput
+  status: ModelMarketPlacePropertyStatusInput
+  updatedTime: ModelStringInput
+}
+
+input ModelMarketplacePropertyFilterInput {
+  and: [ModelMarketplacePropertyFilterInput]
+  askingPrice: ModelIntInput
+  createdTime: ModelStringInput
+  description: ModelStringInput
+  id: ModelIDInput
+  not: ModelMarketplacePropertyFilterInput
+  or: [ModelMarketplacePropertyFilterInput]
+  owner: ModelStringInput
+  propertyMarketplacePropertyId: ModelIDInput
+  readPermissions: ModelStringInput
+  rent: ModelIntInput
+  shareWith: ModelStringInput
+  status: ModelMarketPlacePropertyStatusInput
+  updatedTime: ModelStringInput
+}
+
+input ModelMortgageConditionInput {
+  amount: ModelFloatInput
+  and: [ModelMortgageConditionInput]
+  apn: ModelStringInput
+  createdTime: ModelStringInput
+  dashboardPropertyMortgageId: ModelIDInput
+  grantor: ModelStringInput
+  mortgageDueDay: ModelIntInput
+  mortgageType: ModelMortgageTypeInput
+  not: ModelMortgageConditionInput
+  or: [ModelMortgageConditionInput]
+  owner: ModelStringInput
+  rate: ModelFloatInput
+  startDate: ModelStringInput
+  term: ModelIntInput
+  updatedTime: ModelStringInput
+}
+
+input ModelMortgageFilterInput {
+  amount: ModelFloatInput
+  and: [ModelMortgageFilterInput]
+  apn: ModelStringInput
+  createdTime: ModelStringInput
+  dashboardPropertyMortgageId: ModelIDInput
+  grantor: ModelStringInput
+  id: ModelIDInput
+  mortgageDueDay: ModelIntInput
+  mortgageType: ModelMortgageTypeInput
+  not: ModelMortgageFilterInput
+  or: [ModelMortgageFilterInput]
+  owner: ModelStringInput
+  rate: ModelFloatInput
+  startDate: ModelStringInput
+  term: ModelIntInput
+  updatedTime: ModelStringInput
+}
+
+input ModelMortgageTypeInput {
+  eq: MortgageType
+  ne: MortgageType
+}
+
+input ModelOfferConditionInput {
+  and: [ModelOfferConditionInput]
+  bid: ModelIntInput
+  buyer: ModelStringInput
+  createdTime: ModelStringInput
+  marketplacePropertyOffersId: ModelIDInput
+  not: ModelOfferConditionInput
+  or: [ModelOfferConditionInput]
+  seller: ModelStringInput
+  status: ModelOfferStatusInput
+  updatedTime: ModelStringInput
+}
+
+input ModelOfferFilterInput {
+  and: [ModelOfferFilterInput]
+  bid: ModelIntInput
+  buyer: ModelStringInput
+  createdTime: ModelStringInput
+  id: ModelIDInput
+  marketplacePropertyOffersId: ModelIDInput
+  not: ModelOfferFilterInput
+  or: [ModelOfferFilterInput]
+  seller: ModelStringInput
+  status: ModelOfferStatusInput
+  updatedTime: ModelStringInput
+}
+
+input ModelOfferStatusInput {
+  eq: OfferStatus
+  ne: OfferStatus
+}
+
+input ModelOwnerReportConditionInput {
+  and: [ModelOwnerReportConditionInput]
+  month: ModelIntInput
+  not: ModelOwnerReportConditionInput
+  or: [ModelOwnerReportConditionInput]
+  owner: ModelStringInput
+  year: ModelIntInput
+}
+
+input ModelOwnerReportFilterInput {
+  and: [ModelOwnerReportFilterInput]
+  id: ModelIDInput
+  month: ModelIntInput
+  not: ModelOwnerReportFilterInput
+  or: [ModelOwnerReportFilterInput]
+  owner: ModelStringInput
+  year: ModelIntInput
+}
+
+input ModelPropertyAmortizationTableConditionInput {
+  and: [ModelPropertyAmortizationTableConditionInput]
+  createdTime: ModelStringInput
+  dashboardPropertyAmortizationTableId: ModelIDInput
+  interest: ModelFloatInput
+  mortgageId: ModelStringInput
+  not: ModelPropertyAmortizationTableConditionInput
+  or: [ModelPropertyAmortizationTableConditionInput]
+  owner: ModelStringInput
+  payment: ModelFloatInput
+  period: ModelIntInput
+  principal: ModelFloatInput
+  totalPrincipal: ModelFloatInput
+  transactionDate: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyAmortizationTableFilterInput {
+  and: [ModelPropertyAmortizationTableFilterInput]
+  createdTime: ModelStringInput
+  dashboardPropertyAmortizationTableId: ModelIDInput
+  id: ModelIDInput
+  interest: ModelFloatInput
+  mortgageId: ModelStringInput
+  not: ModelPropertyAmortizationTableFilterInput
+  or: [ModelPropertyAmortizationTableFilterInput]
+  owner: ModelStringInput
+  payment: ModelFloatInput
+  period: ModelIntInput
+  principal: ModelFloatInput
+  totalPrincipal: ModelFloatInput
+  transactionDate: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyConditionInput {
+  and: [ModelPropertyConditionInput]
+  bathrooms: ModelFloatInput
+  bedrooms: ModelIntInput
+  createdTime: ModelStringInput
+  isVacant: ModelBooleanInput
+  not: ModelPropertyConditionInput
+  or: [ModelPropertyConditionInput]
+  owner: ModelStringInput
+  propertyType: ModelPropertyTypeInput
+  sqft: ModelIntInput
+  totalUnits: ModelIntInput
+  totalVacantUnits: ModelIntInput
+  updatedTime: ModelStringInput
+  yearBuilt: ModelIntInput
+}
+
+input ModelPropertyExtendedAddressConditionInput {
+  and: [ModelPropertyExtendedAddressConditionInput]
+  city: ModelStringInput
+  createdTime: ModelStringInput
+  fips: ModelStringInput
+  geoid: ModelStringInput
+  lat: ModelFloatInput
+  lon: ModelFloatInput
+  not: ModelPropertyExtendedAddressConditionInput
+  or: [ModelPropertyExtendedAddressConditionInput]
+  propertyExtendedAddressId: ModelIDInput
+  state: ModelStringInput
+  street1: ModelStringInput
+  street2: ModelStringInput
+  updatedTime: ModelStringInput
+  zipCode: ModelStringInput
+}
+
+input ModelPropertyExtendedAddressFilterInput {
+  and: [ModelPropertyExtendedAddressFilterInput]
+  city: ModelStringInput
+  createdTime: ModelStringInput
+  fips: ModelStringInput
+  geoid: ModelStringInput
+  id: ModelIDInput
+  lat: ModelFloatInput
+  lon: ModelFloatInput
+  not: ModelPropertyExtendedAddressFilterInput
+  or: [ModelPropertyExtendedAddressFilterInput]
+  propertyExtendedAddressId: ModelIDInput
+  state: ModelStringInput
+  street1: ModelStringInput
+  street2: ModelStringInput
+  updatedTime: ModelStringInput
+  zipCode: ModelStringInput
+}
+
+input ModelPropertyFilterInput {
+  and: [ModelPropertyFilterInput]
+  bathrooms: ModelFloatInput
+  bedrooms: ModelIntInput
+  createdTime: ModelStringInput
+  id: ModelIDInput
+  isVacant: ModelBooleanInput
+  not: ModelPropertyFilterInput
+  or: [ModelPropertyFilterInput]
+  owner: ModelStringInput
+  propertyType: ModelPropertyTypeInput
+  sqft: ModelIntInput
+  totalUnits: ModelIntInput
+  totalVacantUnits: ModelIntInput
+  updatedTime: ModelStringInput
+  yearBuilt: ModelIntInput
+}
+
+input ModelPropertyPurchaseHistoryConditionInput {
+  amount: ModelFloatInput
+  and: [ModelPropertyPurchaseHistoryConditionInput]
+  closingCost: ModelFloatInput
+  createdTime: ModelStringInput
+  date: ModelStringInput
+  homeImprovementCost: ModelFloatInput
+  not: ModelPropertyPurchaseHistoryConditionInput
+  or: [ModelPropertyPurchaseHistoryConditionInput]
+  propertyPurchaseHistoryId: ModelIDInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyPurchaseHistoryFilterInput {
+  amount: ModelFloatInput
+  and: [ModelPropertyPurchaseHistoryFilterInput]
+  closingCost: ModelFloatInput
+  createdTime: ModelStringInput
+  date: ModelStringInput
+  homeImprovementCost: ModelFloatInput
+  id: ModelIDInput
+  not: ModelPropertyPurchaseHistoryFilterInput
+  or: [ModelPropertyPurchaseHistoryFilterInput]
+  propertyPurchaseHistoryId: ModelIDInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyRentalConditionInput {
+  and: [ModelPropertyRentalConditionInput]
+  computedDate: ModelStringInput
+  createdTime: ModelStringInput
+  fsd: ModelFloatInput
+  not: ModelPropertyRentalConditionInput
+  or: [ModelPropertyRentalConditionInput]
+  priceMean: ModelIntInput
+  propertyPropertyRentalId: ModelIDInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyRentalFilterInput {
+  and: [ModelPropertyRentalFilterInput]
+  computedDate: ModelStringInput
+  createdTime: ModelStringInput
+  fsd: ModelFloatInput
+  id: ModelIDInput
+  not: ModelPropertyRentalFilterInput
+  or: [ModelPropertyRentalFilterInput]
+  priceMean: ModelIntInput
+  propertyPropertyRentalId: ModelIDInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyTypeInput {
+  eq: PropertyType
+  ne: PropertyType
+}
+
+input ModelPropertyUserExpenseConditionInput {
+  amount: ModelFloatInput
+  and: [ModelPropertyUserExpenseConditionInput]
+  category: ModelExpenseCategoryInput
+  createdTime: ModelStringInput
+  dashboardPropertyUserExpenseId: ModelIDInput
+  not: ModelPropertyUserExpenseConditionInput
+  or: [ModelPropertyUserExpenseConditionInput]
+  owner: ModelStringInput
+  startDate: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyUserExpenseFilterInput {
+  amount: ModelFloatInput
+  and: [ModelPropertyUserExpenseFilterInput]
+  category: ModelExpenseCategoryInput
+  createdTime: ModelStringInput
+  dashboardPropertyUserExpenseId: ModelIDInput
+  id: ModelIDInput
+  not: ModelPropertyUserExpenseFilterInput
+  or: [ModelPropertyUserExpenseFilterInput]
+  owner: ModelStringInput
+  startDate: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelPropertyValuationConditionInput {
+  and: [ModelPropertyValuationConditionInput]
+  createdTime: ModelStringInput
+  fsd: ModelFloatInput
+  not: ModelPropertyValuationConditionInput
+  or: [ModelPropertyValuationConditionInput]
+  priceLower: ModelIntInput
+  priceMean: ModelIntInput
+  priceUpper: ModelIntInput
+  propertyPropertyValuationId: ModelIDInput
+  updatedTime: ModelStringInput
+  valuationDate: ModelStringInput
+}
+
+input ModelPropertyValuationFilterInput {
+  and: [ModelPropertyValuationFilterInput]
+  createdTime: ModelStringInput
+  fsd: ModelFloatInput
+  id: ModelIDInput
+  not: ModelPropertyValuationFilterInput
+  or: [ModelPropertyValuationFilterInput]
+  priceLower: ModelIntInput
+  priceMean: ModelIntInput
+  priceUpper: ModelIntInput
+  propertyPropertyValuationId: ModelIDInput
+  updatedTime: ModelStringInput
+  valuationDate: ModelStringInput
+}
+
+input ModelReportConditionInput {
+  and: [ModelReportConditionInput]
+  appreciation: ModelFloatInput
+  homeValue: ModelFloatInput
+  name: ModelStringInput
+  netCashFlow: ModelFloatInput
+  noi: ModelFloatInput
+  not: ModelReportConditionInput
+  occupancy: ModelIntInput
+  or: [ModelReportConditionInput]
+  owner: ModelStringInput
+  ownerReportReportsId: ModelIDInput
+  reportType: ModelReportTypeInput
+  totalEquity: ModelFloatInput
+  totalProperties: ModelIntInput
+  totalRent: ModelFloatInput
+  version: ModelIntInput
+}
+
+input ModelReportFilterInput {
+  and: [ModelReportFilterInput]
+  appreciation: ModelFloatInput
+  homeValue: ModelFloatInput
+  id: ModelIDInput
+  name: ModelStringInput
+  netCashFlow: ModelFloatInput
+  noi: ModelFloatInput
+  not: ModelReportFilterInput
+  occupancy: ModelIntInput
+  or: [ModelReportFilterInput]
+  owner: ModelStringInput
+  ownerReportReportsId: ModelIDInput
+  reportType: ModelReportTypeInput
+  totalEquity: ModelFloatInput
+  totalProperties: ModelIntInput
+  totalRent: ModelFloatInput
+  version: ModelIntInput
+}
+
+input ModelReportTypeInput {
+  eq: ReportType
+  ne: ReportType
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelStringKeyConditionInput {
+  beginsWith: String
+  between: [String]
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+}
+
+input ModelSubscriptionAppSettingsFilterInput {
+  and: [ModelSubscriptionAppSettingsFilterInput]
+  color: ModelSubscriptionStringInput
+  favicon: ModelSubscriptionStringInput
+  iamAudience: ModelSubscriptionStringInput
+  iamClientId: ModelSubscriptionStringInput
+  iamDomain: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  logo: ModelSubscriptionStringInput
+  or: [ModelSubscriptionAppSettingsFilterInput]
+  title: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionBooleanInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelSubscriptionDashboardPropertyFilterInput {
+  and: [ModelSubscriptionDashboardPropertyFilterInput]
+  createdTime: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  or: [ModelSubscriptionDashboardPropertyFilterInput]
+  pmId: ModelSubscriptionStringInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionFavoriteMarketplacePropertyFilterInput {
+  and: [ModelSubscriptionFavoriteMarketplacePropertyFilterInput]
+  createdTime: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionFavoriteMarketplacePropertyFilterInput]
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionFloatInput {
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  in: [Float]
+  le: Float
+  lt: Float
+  ne: Float
+  notIn: [Float]
+}
+
+input ModelSubscriptionIDInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  in: [ID]
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  notIn: [ID]
+}
+
+input ModelSubscriptionIntInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  in: [Int]
+  le: Int
+  lt: Int
+  ne: Int
+  notIn: [Int]
+}
+
+input ModelSubscriptionLeaseFilterInput {
+  and: [ModelSubscriptionLeaseFilterInput]
+  createdTime: ModelSubscriptionStringInput
+  endDate: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  isActive: ModelSubscriptionBooleanInput
+  or: [ModelSubscriptionLeaseFilterInput]
+  rent: ModelSubscriptionIntInput
+  startDate: ModelSubscriptionStringInput
+  term: ModelSubscriptionStringInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionMarketplacePropertyFilterInput {
+  and: [ModelSubscriptionMarketplacePropertyFilterInput]
+  askingPrice: ModelSubscriptionIntInput
+  createdTime: ModelSubscriptionStringInput
+  description: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionMarketplacePropertyFilterInput]
+  rent: ModelSubscriptionIntInput
+  status: ModelSubscriptionStringInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionMortgageFilterInput {
+  amount: ModelSubscriptionFloatInput
+  and: [ModelSubscriptionMortgageFilterInput]
+  apn: ModelSubscriptionStringInput
+  createdTime: ModelSubscriptionStringInput
+  grantor: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  mortgageDueDay: ModelSubscriptionIntInput
+  mortgageType: ModelSubscriptionStringInput
+  or: [ModelSubscriptionMortgageFilterInput]
+  rate: ModelSubscriptionFloatInput
+  startDate: ModelSubscriptionStringInput
+  term: ModelSubscriptionIntInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionOfferFilterInput {
+  and: [ModelSubscriptionOfferFilterInput]
+  bid: ModelSubscriptionIntInput
+  createdTime: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionOfferFilterInput]
+  status: ModelSubscriptionStringInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionOwnerReportFilterInput {
+  and: [ModelSubscriptionOwnerReportFilterInput]
+  id: ModelSubscriptionIDInput
+  month: ModelSubscriptionIntInput
+  or: [ModelSubscriptionOwnerReportFilterInput]
+  year: ModelSubscriptionIntInput
+}
+
+input ModelSubscriptionPropertyAmortizationTableFilterInput {
+  and: [ModelSubscriptionPropertyAmortizationTableFilterInput]
+  createdTime: ModelSubscriptionStringInput
+  dashboardPropertyAmortizationTableId: ModelSubscriptionIDInput
+  id: ModelSubscriptionIDInput
+  interest: ModelSubscriptionFloatInput
+  mortgageId: ModelSubscriptionStringInput
+  or: [ModelSubscriptionPropertyAmortizationTableFilterInput]
+  payment: ModelSubscriptionFloatInput
+  period: ModelSubscriptionIntInput
+  principal: ModelSubscriptionFloatInput
+  totalPrincipal: ModelSubscriptionFloatInput
+  transactionDate: ModelSubscriptionStringInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionPropertyUserExpenseFilterInput {
+  amount: ModelSubscriptionFloatInput
+  and: [ModelSubscriptionPropertyUserExpenseFilterInput]
+  category: ModelSubscriptionStringInput
+  createdTime: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionPropertyUserExpenseFilterInput]
+  startDate: ModelSubscriptionStringInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionReportFilterInput {
+  and: [ModelSubscriptionReportFilterInput]
+  appreciation: ModelSubscriptionFloatInput
+  homeValue: ModelSubscriptionFloatInput
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  netCashFlow: ModelSubscriptionFloatInput
+  noi: ModelSubscriptionFloatInput
+  occupancy: ModelSubscriptionIntInput
+  or: [ModelSubscriptionReportFilterInput]
+  reportType: ModelSubscriptionStringInput
+  totalEquity: ModelSubscriptionFloatInput
+  totalProperties: ModelSubscriptionIntInput
+  totalRent: ModelSubscriptionFloatInput
+  version: ModelSubscriptionIntInput
+}
+
+input ModelSubscriptionStringInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  in: [String]
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  notIn: [String]
+}
+
+input ModelSubscriptionTransactionFilterInput {
+  amount: ModelSubscriptionFloatInput
+  and: [ModelSubscriptionTransactionFilterInput]
+  category: ModelSubscriptionStringInput
+  createdTime: ModelSubscriptionStringInput
+  dashboardPropertyTransactionsId: ModelSubscriptionIDInput
+  description: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  label: ModelSubscriptionStringInput
+  or: [ModelSubscriptionTransactionFilterInput]
+  transactionDate: ModelSubscriptionStringInput
+  type: ModelSubscriptionStringInput
+  updatedTime: ModelSubscriptionStringInput
+}
+
+input ModelTermInput {
+  eq: Term
+  ne: Term
+}
+
+input ModelTransactionConditionInput {
+  amount: ModelFloatInput
+  and: [ModelTransactionConditionInput]
+  category: ModelCategoryInput
+  createdTime: ModelStringInput
+  dashboardPropertyTransactionsId: ModelIDInput
+  description: ModelStringInput
+  label: ModelLabelInput
+  not: ModelTransactionConditionInput
+  or: [ModelTransactionConditionInput]
+  owner: ModelStringInput
+  transactionDate: ModelStringInput
+  type: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelTransactionFilterInput {
+  amount: ModelFloatInput
+  and: [ModelTransactionFilterInput]
+  category: ModelCategoryInput
+  createdTime: ModelStringInput
+  dashboardPropertyTransactionsId: ModelIDInput
+  description: ModelStringInput
+  id: ModelIDInput
+  label: ModelLabelInput
+  not: ModelTransactionFilterInput
+  or: [ModelTransactionFilterInput]
+  owner: ModelStringInput
+  transactionDate: ModelStringInput
+  type: ModelStringInput
+  updatedTime: ModelStringInput
+}
+
+input ModelUnitConditionInput {
+  and: [ModelUnitConditionInput]
+  bathrooms: ModelFloatInput
+  bedrooms: ModelIntInput
+  createdTime: ModelStringInput
+  isVacant: ModelBooleanInput
+  not: ModelUnitConditionInput
+  or: [ModelUnitConditionInput]
+  propertyUnitsId: ModelIDInput
+  sqft: ModelIntInput
+  updatedTime: ModelStringInput
+}
+
+input ModelUnitFilterInput {
+  and: [ModelUnitFilterInput]
+  bathrooms: ModelFloatInput
+  bedrooms: ModelIntInput
+  createdTime: ModelStringInput
+  id: ModelIDInput
+  isVacant: ModelBooleanInput
+  not: ModelUnitFilterInput
+  or: [ModelUnitFilterInput]
+  propertyUnitsId: ModelIDInput
+  sqft: ModelIntInput
+  updatedTime: ModelStringInput
+}
+
+input PercentileInput {
+  county: Int!
+  incidents: Int!
+  national: Int!
+}
+
+input PictureInput {
+  rank: String
+  url: String!
+}
+
+input PreviousMonthlyMeasuresInput {
+  appreciation: Float!
+  homeValue: Float!
+  totalEquity: Float!
+}
+
+input SearchableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input SearchableFloatFilterInput {
+  eq: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  ne: Float
+  range: [Float]
+}
+
+input SearchableIDFilterInput {
+  eq: ID
+  exists: Boolean
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  match: ID
+  matchPhrase: ID
+  matchPhrasePrefix: ID
+  multiMatch: ID
+  ne: ID
+  range: [ID]
+  regexp: ID
+  wildcard: ID
+}
+
+input SearchableIntFilterInput {
+  eq: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  ne: Int
+  range: [Int]
+}
+
+input SearchableStringFilterInput {
+  eq: String
+  exists: Boolean
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  match: String
+  matchPhrase: String
+  matchPhrasePrefix: String
+  multiMatch: String
+  ne: String
+  range: [String]
+  regexp: String
+  wildcard: String
+}
+
+input SearchableTransactionAggregationInput {
+  field: SearchableTransactionAggregateField!
+  name: String!
+  type: SearchableAggregateType!
+}
+
+input SearchableTransactionFilterInput {
+  amount: SearchableFloatFilterInput
+  and: [SearchableTransactionFilterInput]
+  category: SearchableStringFilterInput
+  createdTime: SearchableStringFilterInput
+  dashboardPropertyTransactionsId: SearchableIDFilterInput
+  description: SearchableStringFilterInput
+  id: SearchableIDFilterInput
+  label: SearchableStringFilterInput
+  not: SearchableTransactionFilterInput
+  or: [SearchableTransactionFilterInput]
+  owner: SearchableStringFilterInput
+  transactionDate: SearchableStringFilterInput
+  type: SearchableStringFilterInput
+  updatedTime: SearchableStringFilterInput
+}
+
+input SearchableTransactionSortInput {
+  direction: SearchableSortDirection
+  field: SearchableTransactionSortableFields
+}
+
+input UpdateAppSettingsInput {
+  color: String
+  favicon: String
+  iamAudience: String
+  iamClientId: String
+  iamDomain: String
+  id: ID!
+  logo: String
+  title: String
+}
+
+input UpdateCrimeInput {
+  all: PercentileInput
+  createdTime: AWSDateTime
+  id: ID!
+  marketplacePropertyCrimeId: ID
+  other: PercentileInput
+  property: PercentileInput
+  updatedTime: AWSDateTime
+  violent: PercentileInput
+}
+
+input UpdateDashboardPropertyInput {
+  address: AddressInput
+  createdTime: AWSDateTime
+  id: ID!
+  name: String
+  owner: String
+  pmId: String
+  propertyDashboardPropertyId: ID
+  updatedTime: AWSDateTime
+}
+
+input UpdateFavoriteMarketplacePropertyInput {
+  createdTime: AWSDateTime
+  id: ID!
+  marketplacePropertyFavoritesId: ID
+  owner: String
+  updatedTime: AWSDateTime
+}
+
+input UpdateLeaseInput {
+  createdTime: AWSDateTime
+  dashboardPropertyLeasesId: ID
+  endDate: AWSDate
+  id: ID!
+  isActive: Boolean
+  owner: String
+  rent: Int
+  startDate: AWSDate
+  term: Term
+  updatedTime: AWSDateTime
+}
+
+input UpdateMarketplacePropertyInput {
+  address: AddressInput
+  askingPrice: Int
+  createdTime: AWSDateTime
+  description: String
+  expenses: MarketPlacePropertyExpensesInput
+  id: ID!
+  owner: String
+  pictures: [PictureInput]
+  propertyMarketplacePropertyId: ID
+  readPermissions: [String]
+  rent: Int
+  shareWith: [String]
+  status: MarketPlacePropertyStatus
+  updatedTime: AWSDateTime
+}
+
+input UpdateMortgageInput {
+  amount: Float
+  apn: String
+  createdTime: AWSDateTime
+  dashboardPropertyMortgageId: ID
+  grantor: String
+  id: ID!
+  mortgageDueDay: Int
+  mortgageType: MortgageType
+  owner: String
+  rate: Float
+  startDate: AWSDate
+  term: Int
+  updatedTime: AWSDateTime
+}
+
+input UpdateOfferInput {
+  bid: Int
+  buyer: String
+  createdTime: AWSDateTime
+  id: ID!
+  marketplacePropertyOffersId: ID
+  seller: String
+  status: OfferStatus
+  updatedTime: AWSDateTime
+}
+
+input UpdateOwnerReportInput {
+  id: ID!
+  month: Int
+  owner: String
+  year: Int
+}
+
+input UpdatePropertyAmortizationTableInput {
+  createdTime: AWSDateTime
+  dashboardPropertyAmortizationTableId: ID
+  id: ID!
+  interest: Float
+  mortgageId: String
+  owner: String
+  payment: Float
+  period: Int
+  principal: Float
+  totalPrincipal: Float
+  transactionDate: AWSDate
+  updatedTime: AWSDateTime
+}
+
+input UpdatePropertyExtendedAddressInput {
+  city: String
+  createdTime: AWSDateTime
+  fips: String
+  geoid: String
+  id: ID!
+  lat: Float
+  lon: Float
+  propertyExtendedAddressId: ID
+  state: String
+  street1: String
+  street2: String
+  updatedTime: AWSDateTime
+  zipCode: String
+}
+
+input UpdatePropertyInput {
+  address: AddressInput
+  bathrooms: Float
+  bedrooms: Int
+  createdTime: AWSDateTime
+  id: ID!
+  isVacant: Boolean
+  owner: String
+  pictures: [PictureInput]
+  propertyType: PropertyType
+  sqft: Int
+  totalUnits: Int
+  totalVacantUnits: Int
+  updatedTime: AWSDateTime
+  yearBuilt: Int
+}
+
+input UpdatePropertyPurchaseHistoryInput {
+  amount: Float
+  closingCost: Float
+  createdTime: AWSDateTime
+  date: AWSDate
+  homeImprovementCost: Float
+  id: ID!
+  propertyPurchaseHistoryId: ID
+  updatedTime: AWSDateTime
+}
+
+input UpdatePropertyRentalInput {
+  computedDate: AWSDate
+  createdTime: AWSDateTime
+  fsd: Float
+  id: ID!
+  priceMean: Int
+  propertyPropertyRentalId: ID
+  updatedTime: AWSDateTime
+}
+
+input UpdatePropertyUserExpenseInput {
+  amount: Float
+  category: ExpenseCategory
+  createdTime: AWSDateTime
+  dashboardPropertyUserExpenseId: ID
+  id: ID!
+  owner: String
+  startDate: AWSDate
+  updatedTime: AWSDateTime
+}
+
+input UpdatePropertyValuationInput {
+  createdTime: AWSDateTime
+  fsd: Float
+  id: ID!
+  priceLower: Int
+  priceMean: Int
+  priceUpper: Int
+  propertyPropertyValuationId: ID
+  updatedTime: AWSDateTime
+  valuationDate: AWSDate
+}
+
+input UpdateReportInput {
+  appreciation: Float
+  expenses: ExpensesInput
+  homeValue: Float
+  id: ID!
+  name: String
+  netCashFlow: Float
+  noi: Float
+  occupancy: Int
+  owner: String
+  ownerReportReportsId: ID
+  previousMonthlyMeasures: PreviousMonthlyMeasuresInput
+  reportType: ReportType
+  totalEquity: Float
+  totalProperties: Int
+  totalRent: Float
+  version: Int
+  yearlyMeasures: YearlyMeasuresInput
+}
+
+input UpdateTransactionInput {
+  amount: Float
+  category: Category
+  createdTime: AWSDateTime
+  dashboardPropertyTransactionsId: ID
+  description: String
+  id: ID!
+  label: Label
+  owner: String
+  transactionDate: AWSDate
+  type: String
+  updatedTime: AWSDateTime
+}
+
+input UpdateUnitInput {
+  address: AddressInput
+  bathrooms: Float
+  bedrooms: Int
+  createdTime: AWSDateTime
+  id: ID!
+  isVacant: Boolean
+  propertyUnitsId: ID
+  sqft: Int
+  updatedTime: AWSDateTime
+}
+
+input YearlyMeasuresInput {
+  capRate: Float!
+  cashOnCash: Float!
+}
