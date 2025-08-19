@@ -5,9 +5,10 @@ operations:
 - genqlient.graphql
 generated: ../pkg/gql/generated.go
 bindings:
-  AWSDate:
-    type: string
   AWSDateTime:
+    type: string
+  AWSDate:
     type: string
   AWSTimestamp:
     type: int
+

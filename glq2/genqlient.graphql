@@ -1,133 +1,124 @@
-mutation CreateUnitMutation($id: ID, $propertyUnitsId: ID!, $city: String!, $state: String!, $street1: String!, $street2: String, $zipCode: String!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean) {
-  	createUnit(input: {address: {city: $city, state: $state, street1: $street1, street2: $street2, zipCode: $zipCode}, id: $id, propertyUnitsId: $propertyUnitsId, bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant}) {
+mutation CreateDashboardPropertyMutation($id: ID, $name: String!, $owner: String!, $city: String!, $state: String!, $street1: String!, $street2: String!, $zipCode: String!, $propertyId: ID!, $pmId: String!, $readPermissions: [String], $managedByEmail: String, $managedByFirstName: String, $managedByLastName: String, $propertyAddedDate: AWSDate) {
+    createDashboardProperty(input: {address: {city: $city, state: $state, street1: $street1, street2: $street2, zipCode: $zipCode}, name: $name, owner: $owner, id: $id, propertyDashboardPropertyId: $propertyId, pmId: $pmId, readPermissions: $readPermissions, managedBy:{firstName: $managedByFirstName, lastName: $managedByLastName, email: $managedByEmail}, propertyAddedDate: $propertyAddedDate}) {
         id
-        propertyUnitsId
-		bedrooms
-		bathrooms
-		sqft
-		isVacant
-        address {
-          city
-          state
-          street1
-          zipCode
-      }
-	}
-}
-
-mutation UpdateUnitMutation($id: ID!, $propertyUnitsId: ID!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean) {
-  	updateUnit(input: {id: $id, propertyUnitsId: $propertyUnitsId,bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant}) {
-		id
-		propertyUnitsId
-		bedrooms
-		bathrooms
-		sqft
-		isVacant
-        address {
-          city
-          state
-          street1
-          zipCode
-      }
-	}
-}
-
-mutation CreatePropertyMutation($id: ID, $owner: String!, $city: String!, $state: String!, $street1: String!, $street2: String, $zipCode: String!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean, $propertyType: PropertyType, $totalUnits: Int, $totalVacantUnits: Int) {
-  	createProperty(input: {address: {city: $city, state: $state, street1: $street1, street2: $street2, zipCode: $zipCode}, owner: $owner, id: $id, bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant, propertyType: $propertyType, totalUnits:$totalUnits, totalVacantUnits: $totalVacantUnits}) {
-        id
-		bedrooms
-		owner
-		bathrooms
-		sqft
-		totalUnits
-		totalVacantUnits
-		isVacant
-        address {
-          city
-          state
-          street1
-          zipCode
-      }
-      propertyType
-	}
-}
-
-mutation UpdatePropertyMutation($id: ID!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean, $propertyType: PropertyType, $totalUnits: Int, $totalVacantUnits: Int) {
-  	updateProperty(input: {id: $id, bedrooms: $bedrooms, bathrooms: $bathrooms, sqft: $sqft, isVacant: $isVacant, propertyType: $propertyType, totalUnits: $totalUnits, totalVacantUnits: $totalVacantUnits}) {
-		id
-		bedrooms
-		owner
-		bathrooms
-		totalUnits
-		totalVacantUnits
-		sqft
-		isVacant
-        address {
-          city
-          state
-          street1
-          zipCode
-      }
-      propertyType
-	}
-}
-
-mutation DeletePropertyMutation($id: ID!) {
-  	deleteProperty(input: {id: $id}) {
-		id
-	}
-}
-
-query GetProperty($id: ID!) {
-  listProperties(limit: 20000, id: $id) {
-     items {
-        id
-		bedrooms
-		bathrooms
-		owner
-		sqft
-		isVacant
-        address {
-          city
-          state
-          street1
-          zipCode
-      }
-      propertyType
-     }
-  }
-}
-
-query ListOwnerPropertiesQuery($owner: String!) {
-  listProperties(limit: 20000, filter: {owner: {eq: $owner}}) {
-    items {
-      owner
-      id
-      address {
-        city
-        state
-        street1
-        zipCode
-      }
     }
-  }
 }
 
-query ListUnits($id: ID!) {
-  listUnits(limit: 1, id: $id) {
-    items {
+
+mutation UpdateDashboardPropertyMutation(
+    $id: ID!,
+    $name: String!,
+    # @genqlient(pointer: true)
+    $hoaMuted: Boolean,
+    $managedByEmail: String,
+    $managedByFirstName: String,
+    $managedByLastName: String,
+    # @genqlient(omitEmpty: true)
+    $propertyAddedDate: AWSDate){
+    updateDashboardProperty(input: {name: $name, id: $id, hoaMuted: $hoaMuted, managedBy: {firstName: $managedByFirstName, lastName: $managedByLastName, email: $managedByEmail}, propertyAddedDate: $propertyAddedDate}) {
         id
-        propertyUnitsId
-		bedrooms
-		bathrooms
-		sqft
-		isVacant
-        address {
-          city
-          state
-          street1
-          zipCode
-      }
+        hoaMuted
     }
-  }
+}
+
+mutation UpdateDashboardPropertyDeletedMutation(
+    $id: ID!,
+    $deleted: Boolean) {
+    updateDashboardProperty(input: {id: $id, deleted: $deleted}) {
+        id
+        deleted
+    }
+}
+
+mutation DeleteDashboardPropertyMutation($id: ID!) {
+    deleteDashboardProperty(input: {id: $id}) {
+        id
+    }
+}
+
+query GetDashboardProperties($id: ID!) {
+    listDashboardProperties(limit: 1,id: $id) {
+        items {
+            id
+            owner
+            address {
+                city
+                state
+                street1
+                street2
+                zipCode
+            }
+            propertyAddedDate
+            name
+            propertyDashboardPropertyId
+            pmId
+            hoaMuted
+            managedBy{
+                firstName
+                lastName
+                email
+            }
+            property {
+                bedrooms
+                bathrooms
+                sqft
+                isVacant
+            }
+            deleted
+        }
+    }
+}
+
+query ListOwnerDashboardPropertiesQuery($owner: String!) {
+    listDashboardPropertyByOwner(owner: $owner) {
+        items {
+            owner
+            id
+            managedBy{
+                firstName
+                lastName
+                email
+            }
+            propertyAddedDate
+            address {
+                city
+                state
+                street1
+                street2
+                zipCode
+            }
+            deleted
+        }
+    }
+}
+
+query GetDashboardProperty($id: ID!) {
+    getDashboardProperty(id: $id) {
+        address {
+            city
+            state
+            street1
+            street2
+            zipCode
+        }
+        hoaMuted
+        propertyAddedDate
+        id
+        name
+        owner
+        pmId
+        property {
+            bathrooms
+            bedrooms
+            isVacant
+            sqft
+        }
+        managedBy{
+            firstName
+            lastName
+            email
+        }
+        propertyDashboardPropertyId
+        deleted
+    }
 }

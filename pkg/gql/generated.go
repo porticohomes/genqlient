@@ -8,960 +8,859 @@ import (
 	"github.com/Khan/genqlient/graphql"
 )
 
-// CreatePropertyMutationCreateProperty includes the requested fields of the GraphQL type Property.
-type CreatePropertyMutationCreateProperty struct {
-	Id               string                                      `json:"id"`
-	Bedrooms         int                                         `json:"bedrooms"`
-	Owner            string                                      `json:"owner"`
-	Bathrooms        float64                                     `json:"bathrooms"`
-	Sqft             int                                         `json:"sqft"`
-	TotalUnits       int                                         `json:"totalUnits"`
-	TotalVacantUnits int                                         `json:"totalVacantUnits"`
-	IsVacant         bool                                        `json:"isVacant"`
-	Address          CreatePropertyMutationCreatePropertyAddress `json:"address"`
-	PropertyType     PropertyType                                `json:"propertyType"`
-}
-
-// GetId returns CreatePropertyMutationCreateProperty.Id, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetId() string { return v.Id }
-
-// GetBedrooms returns CreatePropertyMutationCreateProperty.Bedrooms, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetBedrooms() int { return v.Bedrooms }
-
-// GetOwner returns CreatePropertyMutationCreateProperty.Owner, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetOwner() string { return v.Owner }
-
-// GetBathrooms returns CreatePropertyMutationCreateProperty.Bathrooms, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetBathrooms() float64 { return v.Bathrooms }
-
-// GetSqft returns CreatePropertyMutationCreateProperty.Sqft, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetSqft() int { return v.Sqft }
-
-// GetTotalUnits returns CreatePropertyMutationCreateProperty.TotalUnits, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetTotalUnits() int { return v.TotalUnits }
-
-// GetTotalVacantUnits returns CreatePropertyMutationCreateProperty.TotalVacantUnits, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetTotalVacantUnits() int { return v.TotalVacantUnits }
-
-// GetIsVacant returns CreatePropertyMutationCreateProperty.IsVacant, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetIsVacant() bool { return v.IsVacant }
-
-// GetAddress returns CreatePropertyMutationCreateProperty.Address, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetAddress() CreatePropertyMutationCreatePropertyAddress {
-	return v.Address
-}
-
-// GetPropertyType returns CreatePropertyMutationCreateProperty.PropertyType, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreateProperty) GetPropertyType() PropertyType { return v.PropertyType }
-
-// CreatePropertyMutationCreatePropertyAddress includes the requested fields of the GraphQL type Address.
-type CreatePropertyMutationCreatePropertyAddress struct {
-	City    string `json:"city"`
-	State   string `json:"state"`
-	Street1 string `json:"street1"`
-	ZipCode string `json:"zipCode"`
-}
-
-// GetCity returns CreatePropertyMutationCreatePropertyAddress.City, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreatePropertyAddress) GetCity() string { return v.City }
-
-// GetState returns CreatePropertyMutationCreatePropertyAddress.State, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreatePropertyAddress) GetState() string { return v.State }
-
-// GetStreet1 returns CreatePropertyMutationCreatePropertyAddress.Street1, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreatePropertyAddress) GetStreet1() string { return v.Street1 }
-
-// GetZipCode returns CreatePropertyMutationCreatePropertyAddress.ZipCode, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationCreatePropertyAddress) GetZipCode() string { return v.ZipCode }
-
-// CreatePropertyMutationResponse is returned by CreatePropertyMutation on success.
-type CreatePropertyMutationResponse struct {
-	CreateProperty CreatePropertyMutationCreateProperty `json:"createProperty"`
-}
-
-// GetCreateProperty returns CreatePropertyMutationResponse.CreateProperty, and is useful for accessing the field via an interface.
-func (v *CreatePropertyMutationResponse) GetCreateProperty() CreatePropertyMutationCreateProperty {
-	return v.CreateProperty
-}
-
-// CreateUnitMutationCreateUnit includes the requested fields of the GraphQL type Unit.
-type CreateUnitMutationCreateUnit struct {
-	Id              string                              `json:"id"`
-	PropertyUnitsId string                              `json:"propertyUnitsId"`
-	Bedrooms        int                                 `json:"bedrooms"`
-	Bathrooms       float64                             `json:"bathrooms"`
-	Sqft            int                                 `json:"sqft"`
-	IsVacant        bool                                `json:"isVacant"`
-	Address         CreateUnitMutationCreateUnitAddress `json:"address"`
-}
-
-// GetId returns CreateUnitMutationCreateUnit.Id, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnit) GetId() string { return v.Id }
-
-// GetPropertyUnitsId returns CreateUnitMutationCreateUnit.PropertyUnitsId, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnit) GetPropertyUnitsId() string { return v.PropertyUnitsId }
-
-// GetBedrooms returns CreateUnitMutationCreateUnit.Bedrooms, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnit) GetBedrooms() int { return v.Bedrooms }
-
-// GetBathrooms returns CreateUnitMutationCreateUnit.Bathrooms, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnit) GetBathrooms() float64 { return v.Bathrooms }
-
-// GetSqft returns CreateUnitMutationCreateUnit.Sqft, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnit) GetSqft() int { return v.Sqft }
-
-// GetIsVacant returns CreateUnitMutationCreateUnit.IsVacant, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnit) GetIsVacant() bool { return v.IsVacant }
-
-// GetAddress returns CreateUnitMutationCreateUnit.Address, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnit) GetAddress() CreateUnitMutationCreateUnitAddress {
-	return v.Address
-}
-
-// CreateUnitMutationCreateUnitAddress includes the requested fields of the GraphQL type Address.
-type CreateUnitMutationCreateUnitAddress struct {
-	City    string `json:"city"`
-	State   string `json:"state"`
-	Street1 string `json:"street1"`
-	ZipCode string `json:"zipCode"`
-}
-
-// GetCity returns CreateUnitMutationCreateUnitAddress.City, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnitAddress) GetCity() string { return v.City }
-
-// GetState returns CreateUnitMutationCreateUnitAddress.State, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnitAddress) GetState() string { return v.State }
-
-// GetStreet1 returns CreateUnitMutationCreateUnitAddress.Street1, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnitAddress) GetStreet1() string { return v.Street1 }
-
-// GetZipCode returns CreateUnitMutationCreateUnitAddress.ZipCode, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationCreateUnitAddress) GetZipCode() string { return v.ZipCode }
-
-// CreateUnitMutationResponse is returned by CreateUnitMutation on success.
-type CreateUnitMutationResponse struct {
-	CreateUnit CreateUnitMutationCreateUnit `json:"createUnit"`
-}
-
-// GetCreateUnit returns CreateUnitMutationResponse.CreateUnit, and is useful for accessing the field via an interface.
-func (v *CreateUnitMutationResponse) GetCreateUnit() CreateUnitMutationCreateUnit {
-	return v.CreateUnit
-}
-
-// DeletePropertyMutationDeleteProperty includes the requested fields of the GraphQL type Property.
-type DeletePropertyMutationDeleteProperty struct {
+// CreateDashboardPropertyMutationCreateDashboardProperty includes the requested fields of the GraphQL type DashboardProperty.
+type CreateDashboardPropertyMutationCreateDashboardProperty struct {
 	Id string `json:"id"`
 }
 
-// GetId returns DeletePropertyMutationDeleteProperty.Id, and is useful for accessing the field via an interface.
-func (v *DeletePropertyMutationDeleteProperty) GetId() string { return v.Id }
+// GetId returns CreateDashboardPropertyMutationCreateDashboardProperty.Id, and is useful for accessing the field via an interface.
+func (v *CreateDashboardPropertyMutationCreateDashboardProperty) GetId() string { return v.Id }
 
-// DeletePropertyMutationResponse is returned by DeletePropertyMutation on success.
-type DeletePropertyMutationResponse struct {
-	DeleteProperty DeletePropertyMutationDeleteProperty `json:"deleteProperty"`
+// CreateDashboardPropertyMutationResponse is returned by CreateDashboardPropertyMutation on success.
+type CreateDashboardPropertyMutationResponse struct {
+	CreateDashboardProperty CreateDashboardPropertyMutationCreateDashboardProperty `json:"createDashboardProperty"`
 }
 
-// GetDeleteProperty returns DeletePropertyMutationResponse.DeleteProperty, and is useful for accessing the field via an interface.
-func (v *DeletePropertyMutationResponse) GetDeleteProperty() DeletePropertyMutationDeleteProperty {
-	return v.DeleteProperty
+// GetCreateDashboardProperty returns CreateDashboardPropertyMutationResponse.CreateDashboardProperty, and is useful for accessing the field via an interface.
+func (v *CreateDashboardPropertyMutationResponse) GetCreateDashboardProperty() CreateDashboardPropertyMutationCreateDashboardProperty {
+	return v.CreateDashboardProperty
 }
 
-// GetPropertyListPropertiesModelPropertyConnection includes the requested fields of the GraphQL type ModelPropertyConnection.
-type GetPropertyListPropertiesModelPropertyConnection struct {
-	Items []GetPropertyListPropertiesModelPropertyConnectionItemsProperty `json:"items"`
+// DeleteDashboardPropertyMutationDeleteDashboardProperty includes the requested fields of the GraphQL type DashboardProperty.
+type DeleteDashboardPropertyMutationDeleteDashboardProperty struct {
+	Id string `json:"id"`
 }
 
-// GetItems returns GetPropertyListPropertiesModelPropertyConnection.Items, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnection) GetItems() []GetPropertyListPropertiesModelPropertyConnectionItemsProperty {
+// GetId returns DeleteDashboardPropertyMutationDeleteDashboardProperty.Id, and is useful for accessing the field via an interface.
+func (v *DeleteDashboardPropertyMutationDeleteDashboardProperty) GetId() string { return v.Id }
+
+// DeleteDashboardPropertyMutationResponse is returned by DeleteDashboardPropertyMutation on success.
+type DeleteDashboardPropertyMutationResponse struct {
+	DeleteDashboardProperty DeleteDashboardPropertyMutationDeleteDashboardProperty `json:"deleteDashboardProperty"`
+}
+
+// GetDeleteDashboardProperty returns DeleteDashboardPropertyMutationResponse.DeleteDashboardProperty, and is useful for accessing the field via an interface.
+func (v *DeleteDashboardPropertyMutationResponse) GetDeleteDashboardProperty() DeleteDashboardPropertyMutationDeleteDashboardProperty {
+	return v.DeleteDashboardProperty
+}
+
+// GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnection includes the requested fields of the GraphQL type ModelDashboardPropertyConnection.
+type GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnection struct {
+	Items []GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty `json:"items"`
+}
+
+// GetItems returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnection.Items, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnection) GetItems() []GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty {
 	return v.Items
 }
 
-// GetPropertyListPropertiesModelPropertyConnectionItemsProperty includes the requested fields of the GraphQL type Property.
-type GetPropertyListPropertiesModelPropertyConnectionItemsProperty struct {
-	Id           string                                                               `json:"id"`
-	Bedrooms     int                                                                  `json:"bedrooms"`
-	Bathrooms    float64                                                              `json:"bathrooms"`
-	Owner        string                                                               `json:"owner"`
-	Sqft         int                                                                  `json:"sqft"`
-	IsVacant     bool                                                                 `json:"isVacant"`
-	Address      GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress `json:"address"`
-	PropertyType PropertyType                                                         `json:"propertyType"`
+// GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty includes the requested fields of the GraphQL type DashboardProperty.
+type GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty struct {
+	Id                          string                                                                                                       `json:"id"`
+	Owner                       string                                                                                                       `json:"owner"`
+	Address                     GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress   `json:"address"`
+	PropertyAddedDate           string                                                                                                       `json:"propertyAddedDate"`
+	Name                        string                                                                                                       `json:"name"`
+	PropertyDashboardPropertyId string                                                                                                       `json:"propertyDashboardPropertyId"`
+	PmId                        string                                                                                                       `json:"pmId"`
+	HoaMuted                    bool                                                                                                         `json:"hoaMuted"`
+	ManagedBy                   GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy `json:"managedBy"`
+	Property                    GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty  `json:"property"`
+	Deleted                     bool                                                                                                         `json:"deleted"`
 }
 
-// GetId returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.Id, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetId() string { return v.Id }
-
-// GetBedrooms returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.Bedrooms, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetBedrooms() int {
-	return v.Bedrooms
-}
-
-// GetBathrooms returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.Bathrooms, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetBathrooms() float64 {
-	return v.Bathrooms
-}
-
-// GetOwner returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.Owner, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetOwner() string {
-	return v.Owner
-}
-
-// GetSqft returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.Sqft, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetSqft() int { return v.Sqft }
-
-// GetIsVacant returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.IsVacant, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetIsVacant() bool {
-	return v.IsVacant
-}
-
-// GetAddress returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.Address, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetAddress() GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress {
-	return v.Address
-}
-
-// GetPropertyType returns GetPropertyListPropertiesModelPropertyConnectionItemsProperty.PropertyType, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsProperty) GetPropertyType() PropertyType {
-	return v.PropertyType
-}
-
-// GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress includes the requested fields of the GraphQL type Address.
-type GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress struct {
-	City    string `json:"city"`
-	State   string `json:"state"`
-	Street1 string `json:"street1"`
-	ZipCode string `json:"zipCode"`
-}
-
-// GetCity returns GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress.City, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress) GetCity() string {
-	return v.City
-}
-
-// GetState returns GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress.State, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress) GetState() string {
-	return v.State
-}
-
-// GetStreet1 returns GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress.Street1, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress) GetStreet1() string {
-	return v.Street1
-}
-
-// GetZipCode returns GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress.ZipCode, and is useful for accessing the field via an interface.
-func (v *GetPropertyListPropertiesModelPropertyConnectionItemsPropertyAddress) GetZipCode() string {
-	return v.ZipCode
-}
-
-// GetPropertyResponse is returned by GetProperty on success.
-type GetPropertyResponse struct {
-	ListProperties GetPropertyListPropertiesModelPropertyConnection `json:"listProperties"`
-}
-
-// GetListProperties returns GetPropertyResponse.ListProperties, and is useful for accessing the field via an interface.
-func (v *GetPropertyResponse) GetListProperties() GetPropertyListPropertiesModelPropertyConnection {
-	return v.ListProperties
-}
-
-// ListOwnerPropertiesQueryListPropertiesModelPropertyConnection includes the requested fields of the GraphQL type ModelPropertyConnection.
-type ListOwnerPropertiesQueryListPropertiesModelPropertyConnection struct {
-	Items []ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty `json:"items"`
-}
-
-// GetItems returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnection.Items, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnection) GetItems() []ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty {
-	return v.Items
-}
-
-// ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty includes the requested fields of the GraphQL type Property.
-type ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty struct {
-	Owner   string                                                                            `json:"owner"`
-	Id      string                                                                            `json:"id"`
-	Address ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress `json:"address"`
-}
-
-// GetOwner returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty.Owner, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty) GetOwner() string {
-	return v.Owner
-}
-
-// GetId returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty.Id, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty) GetId() string {
+// GetId returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.Id, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetId() string {
 	return v.Id
 }
 
-// GetAddress returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty.Address, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsProperty) GetAddress() ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress {
+// GetOwner returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.Owner, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetOwner() string {
+	return v.Owner
+}
+
+// GetAddress returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.Address, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetAddress() GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress {
 	return v.Address
 }
 
-// ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress includes the requested fields of the GraphQL type Address.
-type ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress struct {
+// GetPropertyAddedDate returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.PropertyAddedDate, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetPropertyAddedDate() string {
+	return v.PropertyAddedDate
+}
+
+// GetName returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.Name, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetName() string {
+	return v.Name
+}
+
+// GetPropertyDashboardPropertyId returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.PropertyDashboardPropertyId, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetPropertyDashboardPropertyId() string {
+	return v.PropertyDashboardPropertyId
+}
+
+// GetPmId returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.PmId, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetPmId() string {
+	return v.PmId
+}
+
+// GetHoaMuted returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.HoaMuted, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetHoaMuted() bool {
+	return v.HoaMuted
+}
+
+// GetManagedBy returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.ManagedBy, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetManagedBy() GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy {
+	return v.ManagedBy
+}
+
+// GetProperty returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.Property, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetProperty() GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty {
+	return v.Property
+}
+
+// GetDeleted returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty.Deleted, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardProperty) GetDeleted() bool {
+	return v.Deleted
+}
+
+// GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress includes the requested fields of the GraphQL type Address.
+type GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress struct {
 	City    string `json:"city"`
 	State   string `json:"state"`
 	Street1 string `json:"street1"`
+	Street2 string `json:"street2"`
 	ZipCode string `json:"zipCode"`
 }
 
-// GetCity returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress.City, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress) GetCity() string {
+// GetCity returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress.City, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetCity() string {
 	return v.City
 }
 
-// GetState returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress.State, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress) GetState() string {
+// GetState returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress.State, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetState() string {
 	return v.State
 }
 
-// GetStreet1 returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress.Street1, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress) GetStreet1() string {
+// GetStreet1 returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress.Street1, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetStreet1() string {
 	return v.Street1
 }
 
-// GetZipCode returns ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress.ZipCode, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryListPropertiesModelPropertyConnectionItemsPropertyAddress) GetZipCode() string {
+// GetStreet2 returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress.Street2, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetStreet2() string {
+	return v.Street2
+}
+
+// GetZipCode returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress.ZipCode, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetZipCode() string {
 	return v.ZipCode
 }
 
-// ListOwnerPropertiesQueryResponse is returned by ListOwnerPropertiesQuery on success.
-type ListOwnerPropertiesQueryResponse struct {
-	ListProperties ListOwnerPropertiesQueryListPropertiesModelPropertyConnection `json:"listProperties"`
+// GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy includes the requested fields of the GraphQL type ManagedBy.
+type GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy struct {
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Email     string `json:"email"`
 }
 
-// GetListProperties returns ListOwnerPropertiesQueryResponse.ListProperties, and is useful for accessing the field via an interface.
-func (v *ListOwnerPropertiesQueryResponse) GetListProperties() ListOwnerPropertiesQueryListPropertiesModelPropertyConnection {
-	return v.ListProperties
+// GetFirstName returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy.FirstName, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy) GetFirstName() string {
+	return v.FirstName
 }
 
-// ListUnitsListUnitsModelUnitConnection includes the requested fields of the GraphQL type ModelUnitConnection.
-type ListUnitsListUnitsModelUnitConnection struct {
-	Items []ListUnitsListUnitsModelUnitConnectionItemsUnit `json:"items"`
+// GetLastName returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy.LastName, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy) GetLastName() string {
+	return v.LastName
 }
 
-// GetItems returns ListUnitsListUnitsModelUnitConnection.Items, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnection) GetItems() []ListUnitsListUnitsModelUnitConnectionItemsUnit {
+// GetEmail returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy.Email, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy) GetEmail() string {
+	return v.Email
+}
+
+// GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty includes the requested fields of the GraphQL type Property.
+type GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty struct {
+	Bedrooms  int     `json:"bedrooms"`
+	Bathrooms float64 `json:"bathrooms"`
+	Sqft      int     `json:"sqft"`
+	IsVacant  bool    `json:"isVacant"`
+}
+
+// GetBedrooms returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty.Bedrooms, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty) GetBedrooms() int {
+	return v.Bedrooms
+}
+
+// GetBathrooms returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty.Bathrooms, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty) GetBathrooms() float64 {
+	return v.Bathrooms
+}
+
+// GetSqft returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty.Sqft, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty) GetSqft() int {
+	return v.Sqft
+}
+
+// GetIsVacant returns GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty.IsVacant, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnectionItemsDashboardPropertyProperty) GetIsVacant() bool {
+	return v.IsVacant
+}
+
+// GetDashboardPropertiesResponse is returned by GetDashboardProperties on success.
+type GetDashboardPropertiesResponse struct {
+	ListDashboardProperties GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnection `json:"listDashboardProperties"`
+}
+
+// GetListDashboardProperties returns GetDashboardPropertiesResponse.ListDashboardProperties, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertiesResponse) GetListDashboardProperties() GetDashboardPropertiesListDashboardPropertiesModelDashboardPropertyConnection {
+	return v.ListDashboardProperties
+}
+
+// GetDashboardPropertyGetDashboardProperty includes the requested fields of the GraphQL type DashboardProperty.
+type GetDashboardPropertyGetDashboardProperty struct {
+	Address                     GetDashboardPropertyGetDashboardPropertyAddress   `json:"address"`
+	HoaMuted                    bool                                              `json:"hoaMuted"`
+	PropertyAddedDate           string                                            `json:"propertyAddedDate"`
+	Id                          string                                            `json:"id"`
+	Name                        string                                            `json:"name"`
+	Owner                       string                                            `json:"owner"`
+	PmId                        string                                            `json:"pmId"`
+	Property                    GetDashboardPropertyGetDashboardPropertyProperty  `json:"property"`
+	ManagedBy                   GetDashboardPropertyGetDashboardPropertyManagedBy `json:"managedBy"`
+	PropertyDashboardPropertyId string                                            `json:"propertyDashboardPropertyId"`
+	Deleted                     bool                                              `json:"deleted"`
+}
+
+// GetAddress returns GetDashboardPropertyGetDashboardProperty.Address, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetAddress() GetDashboardPropertyGetDashboardPropertyAddress {
+	return v.Address
+}
+
+// GetHoaMuted returns GetDashboardPropertyGetDashboardProperty.HoaMuted, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetHoaMuted() bool { return v.HoaMuted }
+
+// GetPropertyAddedDate returns GetDashboardPropertyGetDashboardProperty.PropertyAddedDate, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetPropertyAddedDate() string {
+	return v.PropertyAddedDate
+}
+
+// GetId returns GetDashboardPropertyGetDashboardProperty.Id, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetId() string { return v.Id }
+
+// GetName returns GetDashboardPropertyGetDashboardProperty.Name, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetName() string { return v.Name }
+
+// GetOwner returns GetDashboardPropertyGetDashboardProperty.Owner, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetOwner() string { return v.Owner }
+
+// GetPmId returns GetDashboardPropertyGetDashboardProperty.PmId, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetPmId() string { return v.PmId }
+
+// GetProperty returns GetDashboardPropertyGetDashboardProperty.Property, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetProperty() GetDashboardPropertyGetDashboardPropertyProperty {
+	return v.Property
+}
+
+// GetManagedBy returns GetDashboardPropertyGetDashboardProperty.ManagedBy, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetManagedBy() GetDashboardPropertyGetDashboardPropertyManagedBy {
+	return v.ManagedBy
+}
+
+// GetPropertyDashboardPropertyId returns GetDashboardPropertyGetDashboardProperty.PropertyDashboardPropertyId, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetPropertyDashboardPropertyId() string {
+	return v.PropertyDashboardPropertyId
+}
+
+// GetDeleted returns GetDashboardPropertyGetDashboardProperty.Deleted, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardProperty) GetDeleted() bool { return v.Deleted }
+
+// GetDashboardPropertyGetDashboardPropertyAddress includes the requested fields of the GraphQL type Address.
+type GetDashboardPropertyGetDashboardPropertyAddress struct {
+	City    string `json:"city"`
+	State   string `json:"state"`
+	Street1 string `json:"street1"`
+	Street2 string `json:"street2"`
+	ZipCode string `json:"zipCode"`
+}
+
+// GetCity returns GetDashboardPropertyGetDashboardPropertyAddress.City, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyAddress) GetCity() string { return v.City }
+
+// GetState returns GetDashboardPropertyGetDashboardPropertyAddress.State, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyAddress) GetState() string { return v.State }
+
+// GetStreet1 returns GetDashboardPropertyGetDashboardPropertyAddress.Street1, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyAddress) GetStreet1() string { return v.Street1 }
+
+// GetStreet2 returns GetDashboardPropertyGetDashboardPropertyAddress.Street2, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyAddress) GetStreet2() string { return v.Street2 }
+
+// GetZipCode returns GetDashboardPropertyGetDashboardPropertyAddress.ZipCode, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyAddress) GetZipCode() string { return v.ZipCode }
+
+// GetDashboardPropertyGetDashboardPropertyManagedBy includes the requested fields of the GraphQL type ManagedBy.
+type GetDashboardPropertyGetDashboardPropertyManagedBy struct {
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Email     string `json:"email"`
+}
+
+// GetFirstName returns GetDashboardPropertyGetDashboardPropertyManagedBy.FirstName, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyManagedBy) GetFirstName() string { return v.FirstName }
+
+// GetLastName returns GetDashboardPropertyGetDashboardPropertyManagedBy.LastName, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyManagedBy) GetLastName() string { return v.LastName }
+
+// GetEmail returns GetDashboardPropertyGetDashboardPropertyManagedBy.Email, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyManagedBy) GetEmail() string { return v.Email }
+
+// GetDashboardPropertyGetDashboardPropertyProperty includes the requested fields of the GraphQL type Property.
+type GetDashboardPropertyGetDashboardPropertyProperty struct {
+	Bathrooms float64 `json:"bathrooms"`
+	Bedrooms  int     `json:"bedrooms"`
+	IsVacant  bool    `json:"isVacant"`
+	Sqft      int     `json:"sqft"`
+}
+
+// GetBathrooms returns GetDashboardPropertyGetDashboardPropertyProperty.Bathrooms, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyProperty) GetBathrooms() float64 { return v.Bathrooms }
+
+// GetBedrooms returns GetDashboardPropertyGetDashboardPropertyProperty.Bedrooms, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyProperty) GetBedrooms() int { return v.Bedrooms }
+
+// GetIsVacant returns GetDashboardPropertyGetDashboardPropertyProperty.IsVacant, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyProperty) GetIsVacant() bool { return v.IsVacant }
+
+// GetSqft returns GetDashboardPropertyGetDashboardPropertyProperty.Sqft, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyGetDashboardPropertyProperty) GetSqft() int { return v.Sqft }
+
+// GetDashboardPropertyResponse is returned by GetDashboardProperty on success.
+type GetDashboardPropertyResponse struct {
+	GetDashboardProperty GetDashboardPropertyGetDashboardProperty `json:"getDashboardProperty"`
+}
+
+// GetGetDashboardProperty returns GetDashboardPropertyResponse.GetDashboardProperty, and is useful for accessing the field via an interface.
+func (v *GetDashboardPropertyResponse) GetGetDashboardProperty() GetDashboardPropertyGetDashboardProperty {
+	return v.GetDashboardProperty
+}
+
+// ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnection includes the requested fields of the GraphQL type ModelDashboardPropertyConnection.
+type ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnection struct {
+	Items []ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty `json:"items"`
+}
+
+// GetItems returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnection.Items, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnection) GetItems() []ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty {
 	return v.Items
 }
 
-// ListUnitsListUnitsModelUnitConnectionItemsUnit includes the requested fields of the GraphQL type Unit.
-type ListUnitsListUnitsModelUnitConnectionItemsUnit struct {
-	Id              string                                                `json:"id"`
-	PropertyUnitsId string                                                `json:"propertyUnitsId"`
-	Bedrooms        int                                                   `json:"bedrooms"`
-	Bathrooms       float64                                               `json:"bathrooms"`
-	Sqft            int                                                   `json:"sqft"`
-	IsVacant        bool                                                  `json:"isVacant"`
-	Address         ListUnitsListUnitsModelUnitConnectionItemsUnitAddress `json:"address"`
+// ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty includes the requested fields of the GraphQL type DashboardProperty.
+type ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty struct {
+	Owner             string                                                                                                                       `json:"owner"`
+	Id                string                                                                                                                       `json:"id"`
+	ManagedBy         ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy `json:"managedBy"`
+	PropertyAddedDate string                                                                                                                       `json:"propertyAddedDate"`
+	Address           ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress   `json:"address"`
+	Deleted           bool                                                                                                                         `json:"deleted"`
 }
 
-// GetId returns ListUnitsListUnitsModelUnitConnectionItemsUnit.Id, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnit) GetId() string { return v.Id }
-
-// GetPropertyUnitsId returns ListUnitsListUnitsModelUnitConnectionItemsUnit.PropertyUnitsId, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnit) GetPropertyUnitsId() string {
-	return v.PropertyUnitsId
+// GetOwner returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty.Owner, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty) GetOwner() string {
+	return v.Owner
 }
 
-// GetBedrooms returns ListUnitsListUnitsModelUnitConnectionItemsUnit.Bedrooms, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnit) GetBedrooms() int { return v.Bedrooms }
+// GetId returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty.Id, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty) GetId() string {
+	return v.Id
+}
 
-// GetBathrooms returns ListUnitsListUnitsModelUnitConnectionItemsUnit.Bathrooms, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnit) GetBathrooms() float64 { return v.Bathrooms }
+// GetManagedBy returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty.ManagedBy, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty) GetManagedBy() ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy {
+	return v.ManagedBy
+}
 
-// GetSqft returns ListUnitsListUnitsModelUnitConnectionItemsUnit.Sqft, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnit) GetSqft() int { return v.Sqft }
+// GetPropertyAddedDate returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty.PropertyAddedDate, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty) GetPropertyAddedDate() string {
+	return v.PropertyAddedDate
+}
 
-// GetIsVacant returns ListUnitsListUnitsModelUnitConnectionItemsUnit.IsVacant, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnit) GetIsVacant() bool { return v.IsVacant }
-
-// GetAddress returns ListUnitsListUnitsModelUnitConnectionItemsUnit.Address, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnit) GetAddress() ListUnitsListUnitsModelUnitConnectionItemsUnitAddress {
+// GetAddress returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty.Address, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty) GetAddress() ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress {
 	return v.Address
 }
 
-// ListUnitsListUnitsModelUnitConnectionItemsUnitAddress includes the requested fields of the GraphQL type Address.
-type ListUnitsListUnitsModelUnitConnectionItemsUnitAddress struct {
+// GetDeleted returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty.Deleted, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardProperty) GetDeleted() bool {
+	return v.Deleted
+}
+
+// ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress includes the requested fields of the GraphQL type Address.
+type ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress struct {
 	City    string `json:"city"`
 	State   string `json:"state"`
 	Street1 string `json:"street1"`
+	Street2 string `json:"street2"`
 	ZipCode string `json:"zipCode"`
 }
 
-// GetCity returns ListUnitsListUnitsModelUnitConnectionItemsUnitAddress.City, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnitAddress) GetCity() string { return v.City }
-
-// GetState returns ListUnitsListUnitsModelUnitConnectionItemsUnitAddress.State, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnitAddress) GetState() string { return v.State }
-
-// GetStreet1 returns ListUnitsListUnitsModelUnitConnectionItemsUnitAddress.Street1, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnitAddress) GetStreet1() string { return v.Street1 }
-
-// GetZipCode returns ListUnitsListUnitsModelUnitConnectionItemsUnitAddress.ZipCode, and is useful for accessing the field via an interface.
-func (v *ListUnitsListUnitsModelUnitConnectionItemsUnitAddress) GetZipCode() string { return v.ZipCode }
-
-// ListUnitsResponse is returned by ListUnits on success.
-type ListUnitsResponse struct {
-	ListUnits ListUnitsListUnitsModelUnitConnection `json:"listUnits"`
+// GetCity returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress.City, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetCity() string {
+	return v.City
 }
 
-// GetListUnits returns ListUnitsResponse.ListUnits, and is useful for accessing the field via an interface.
-func (v *ListUnitsResponse) GetListUnits() ListUnitsListUnitsModelUnitConnection { return v.ListUnits }
-
-type PropertyType string
-
-const (
-	PropertyTypeCondo        PropertyType = "condo"
-	PropertyTypeMultifamily  PropertyType = "multiFamily"
-	PropertyTypeSinglefamily PropertyType = "singleFamily"
-	PropertyTypeTownhouse    PropertyType = "townhouse"
-	PropertyTypeUnknown      PropertyType = "unknown"
-)
-
-// UpdatePropertyMutationResponse is returned by UpdatePropertyMutation on success.
-type UpdatePropertyMutationResponse struct {
-	UpdateProperty UpdatePropertyMutationUpdateProperty `json:"updateProperty"`
+// GetState returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress.State, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetState() string {
+	return v.State
 }
 
-// GetUpdateProperty returns UpdatePropertyMutationResponse.UpdateProperty, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationResponse) GetUpdateProperty() UpdatePropertyMutationUpdateProperty {
-	return v.UpdateProperty
+// GetStreet1 returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress.Street1, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetStreet1() string {
+	return v.Street1
 }
 
-// UpdatePropertyMutationUpdateProperty includes the requested fields of the GraphQL type Property.
-type UpdatePropertyMutationUpdateProperty struct {
-	Id               string                                      `json:"id"`
-	Bedrooms         int                                         `json:"bedrooms"`
-	Owner            string                                      `json:"owner"`
-	Bathrooms        float64                                     `json:"bathrooms"`
-	TotalUnits       int                                         `json:"totalUnits"`
-	TotalVacantUnits int                                         `json:"totalVacantUnits"`
-	Sqft             int                                         `json:"sqft"`
-	IsVacant         bool                                        `json:"isVacant"`
-	Address          UpdatePropertyMutationUpdatePropertyAddress `json:"address"`
-	PropertyType     PropertyType                                `json:"propertyType"`
+// GetStreet2 returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress.Street2, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetStreet2() string {
+	return v.Street2
 }
 
-// GetId returns UpdatePropertyMutationUpdateProperty.Id, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetId() string { return v.Id }
-
-// GetBedrooms returns UpdatePropertyMutationUpdateProperty.Bedrooms, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetBedrooms() int { return v.Bedrooms }
-
-// GetOwner returns UpdatePropertyMutationUpdateProperty.Owner, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetOwner() string { return v.Owner }
-
-// GetBathrooms returns UpdatePropertyMutationUpdateProperty.Bathrooms, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetBathrooms() float64 { return v.Bathrooms }
-
-// GetTotalUnits returns UpdatePropertyMutationUpdateProperty.TotalUnits, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetTotalUnits() int { return v.TotalUnits }
-
-// GetTotalVacantUnits returns UpdatePropertyMutationUpdateProperty.TotalVacantUnits, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetTotalVacantUnits() int { return v.TotalVacantUnits }
-
-// GetSqft returns UpdatePropertyMutationUpdateProperty.Sqft, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetSqft() int { return v.Sqft }
-
-// GetIsVacant returns UpdatePropertyMutationUpdateProperty.IsVacant, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetIsVacant() bool { return v.IsVacant }
-
-// GetAddress returns UpdatePropertyMutationUpdateProperty.Address, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetAddress() UpdatePropertyMutationUpdatePropertyAddress {
-	return v.Address
+// GetZipCode returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress.ZipCode, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyAddress) GetZipCode() string {
+	return v.ZipCode
 }
 
-// GetPropertyType returns UpdatePropertyMutationUpdateProperty.PropertyType, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdateProperty) GetPropertyType() PropertyType { return v.PropertyType }
-
-// UpdatePropertyMutationUpdatePropertyAddress includes the requested fields of the GraphQL type Address.
-type UpdatePropertyMutationUpdatePropertyAddress struct {
-	City    string `json:"city"`
-	State   string `json:"state"`
-	Street1 string `json:"street1"`
-	ZipCode string `json:"zipCode"`
+// ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy includes the requested fields of the GraphQL type ManagedBy.
+type ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy struct {
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Email     string `json:"email"`
 }
 
-// GetCity returns UpdatePropertyMutationUpdatePropertyAddress.City, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdatePropertyAddress) GetCity() string { return v.City }
-
-// GetState returns UpdatePropertyMutationUpdatePropertyAddress.State, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdatePropertyAddress) GetState() string { return v.State }
-
-// GetStreet1 returns UpdatePropertyMutationUpdatePropertyAddress.Street1, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdatePropertyAddress) GetStreet1() string { return v.Street1 }
-
-// GetZipCode returns UpdatePropertyMutationUpdatePropertyAddress.ZipCode, and is useful for accessing the field via an interface.
-func (v *UpdatePropertyMutationUpdatePropertyAddress) GetZipCode() string { return v.ZipCode }
-
-// UpdateUnitMutationResponse is returned by UpdateUnitMutation on success.
-type UpdateUnitMutationResponse struct {
-	UpdateUnit UpdateUnitMutationUpdateUnit `json:"updateUnit"`
+// GetFirstName returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy.FirstName, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy) GetFirstName() string {
+	return v.FirstName
 }
 
-// GetUpdateUnit returns UpdateUnitMutationResponse.UpdateUnit, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationResponse) GetUpdateUnit() UpdateUnitMutationUpdateUnit {
-	return v.UpdateUnit
+// GetLastName returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy.LastName, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy) GetLastName() string {
+	return v.LastName
 }
 
-// UpdateUnitMutationUpdateUnit includes the requested fields of the GraphQL type Unit.
-type UpdateUnitMutationUpdateUnit struct {
-	Id              string                              `json:"id"`
-	PropertyUnitsId string                              `json:"propertyUnitsId"`
-	Bedrooms        int                                 `json:"bedrooms"`
-	Bathrooms       float64                             `json:"bathrooms"`
-	Sqft            int                                 `json:"sqft"`
-	IsVacant        bool                                `json:"isVacant"`
-	Address         UpdateUnitMutationUpdateUnitAddress `json:"address"`
+// GetEmail returns ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy.Email, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnectionItemsDashboardPropertyManagedBy) GetEmail() string {
+	return v.Email
 }
 
-// GetId returns UpdateUnitMutationUpdateUnit.Id, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnit) GetId() string { return v.Id }
-
-// GetPropertyUnitsId returns UpdateUnitMutationUpdateUnit.PropertyUnitsId, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnit) GetPropertyUnitsId() string { return v.PropertyUnitsId }
-
-// GetBedrooms returns UpdateUnitMutationUpdateUnit.Bedrooms, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnit) GetBedrooms() int { return v.Bedrooms }
-
-// GetBathrooms returns UpdateUnitMutationUpdateUnit.Bathrooms, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnit) GetBathrooms() float64 { return v.Bathrooms }
-
-// GetSqft returns UpdateUnitMutationUpdateUnit.Sqft, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnit) GetSqft() int { return v.Sqft }
-
-// GetIsVacant returns UpdateUnitMutationUpdateUnit.IsVacant, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnit) GetIsVacant() bool { return v.IsVacant }
-
-// GetAddress returns UpdateUnitMutationUpdateUnit.Address, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnit) GetAddress() UpdateUnitMutationUpdateUnitAddress {
-	return v.Address
+// ListOwnerDashboardPropertiesQueryResponse is returned by ListOwnerDashboardPropertiesQuery on success.
+type ListOwnerDashboardPropertiesQueryResponse struct {
+	ListDashboardPropertyByOwner ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnection `json:"listDashboardPropertyByOwner"`
 }
 
-// UpdateUnitMutationUpdateUnitAddress includes the requested fields of the GraphQL type Address.
-type UpdateUnitMutationUpdateUnitAddress struct {
-	City    string `json:"city"`
-	State   string `json:"state"`
-	Street1 string `json:"street1"`
-	ZipCode string `json:"zipCode"`
+// GetListDashboardPropertyByOwner returns ListOwnerDashboardPropertiesQueryResponse.ListDashboardPropertyByOwner, and is useful for accessing the field via an interface.
+func (v *ListOwnerDashboardPropertiesQueryResponse) GetListDashboardPropertyByOwner() ListOwnerDashboardPropertiesQueryListDashboardPropertyByOwnerModelDashboardPropertyConnection {
+	return v.ListDashboardPropertyByOwner
 }
 
-// GetCity returns UpdateUnitMutationUpdateUnitAddress.City, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnitAddress) GetCity() string { return v.City }
-
-// GetState returns UpdateUnitMutationUpdateUnitAddress.State, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnitAddress) GetState() string { return v.State }
-
-// GetStreet1 returns UpdateUnitMutationUpdateUnitAddress.Street1, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnitAddress) GetStreet1() string { return v.Street1 }
-
-// GetZipCode returns UpdateUnitMutationUpdateUnitAddress.ZipCode, and is useful for accessing the field via an interface.
-func (v *UpdateUnitMutationUpdateUnitAddress) GetZipCode() string { return v.ZipCode }
-
-// __CreatePropertyMutationInput is used internally by genqlient
-type __CreatePropertyMutationInput struct {
-	Id               string       `json:"id"`
-	Owner            string       `json:"owner"`
-	City             string       `json:"city"`
-	State            string       `json:"state"`
-	Street1          string       `json:"street1"`
-	Street2          string       `json:"street2"`
-	ZipCode          string       `json:"zipCode"`
-	Bedrooms         int          `json:"bedrooms"`
-	Bathrooms        float64      `json:"bathrooms"`
-	Sqft             int          `json:"sqft"`
-	IsVacant         bool         `json:"isVacant"`
-	PropertyType     PropertyType `json:"propertyType"`
-	TotalUnits       int          `json:"totalUnits"`
-	TotalVacantUnits int          `json:"totalVacantUnits"`
+// UpdateDashboardPropertyDeletedMutationResponse is returned by UpdateDashboardPropertyDeletedMutation on success.
+type UpdateDashboardPropertyDeletedMutationResponse struct {
+	UpdateDashboardProperty UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty `json:"updateDashboardProperty"`
 }
 
-// GetId returns __CreatePropertyMutationInput.Id, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetId() string { return v.Id }
-
-// GetOwner returns __CreatePropertyMutationInput.Owner, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetOwner() string { return v.Owner }
-
-// GetCity returns __CreatePropertyMutationInput.City, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetCity() string { return v.City }
-
-// GetState returns __CreatePropertyMutationInput.State, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetState() string { return v.State }
-
-// GetStreet1 returns __CreatePropertyMutationInput.Street1, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetStreet1() string { return v.Street1 }
-
-// GetStreet2 returns __CreatePropertyMutationInput.Street2, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetStreet2() string { return v.Street2 }
-
-// GetZipCode returns __CreatePropertyMutationInput.ZipCode, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetZipCode() string { return v.ZipCode }
-
-// GetBedrooms returns __CreatePropertyMutationInput.Bedrooms, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetBedrooms() int { return v.Bedrooms }
-
-// GetBathrooms returns __CreatePropertyMutationInput.Bathrooms, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetBathrooms() float64 { return v.Bathrooms }
-
-// GetSqft returns __CreatePropertyMutationInput.Sqft, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetSqft() int { return v.Sqft }
-
-// GetIsVacant returns __CreatePropertyMutationInput.IsVacant, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetIsVacant() bool { return v.IsVacant }
-
-// GetPropertyType returns __CreatePropertyMutationInput.PropertyType, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetPropertyType() PropertyType { return v.PropertyType }
-
-// GetTotalUnits returns __CreatePropertyMutationInput.TotalUnits, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetTotalUnits() int { return v.TotalUnits }
-
-// GetTotalVacantUnits returns __CreatePropertyMutationInput.TotalVacantUnits, and is useful for accessing the field via an interface.
-func (v *__CreatePropertyMutationInput) GetTotalVacantUnits() int { return v.TotalVacantUnits }
-
-// __CreateUnitMutationInput is used internally by genqlient
-type __CreateUnitMutationInput struct {
-	Id              string  `json:"id"`
-	PropertyUnitsId string  `json:"propertyUnitsId"`
-	City            string  `json:"city"`
-	State           string  `json:"state"`
-	Street1         string  `json:"street1"`
-	Street2         string  `json:"street2"`
-	ZipCode         string  `json:"zipCode"`
-	Bedrooms        int     `json:"bedrooms"`
-	Bathrooms       float64 `json:"bathrooms"`
-	Sqft            int     `json:"sqft"`
-	IsVacant        bool    `json:"isVacant"`
+// GetUpdateDashboardProperty returns UpdateDashboardPropertyDeletedMutationResponse.UpdateDashboardProperty, and is useful for accessing the field via an interface.
+func (v *UpdateDashboardPropertyDeletedMutationResponse) GetUpdateDashboardProperty() UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty {
+	return v.UpdateDashboardProperty
 }
 
-// GetId returns __CreateUnitMutationInput.Id, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetId() string { return v.Id }
+// UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty includes the requested fields of the GraphQL type DashboardProperty.
+type UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty struct {
+	Id      string `json:"id"`
+	Deleted bool   `json:"deleted"`
+}
 
-// GetPropertyUnitsId returns __CreateUnitMutationInput.PropertyUnitsId, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetPropertyUnitsId() string { return v.PropertyUnitsId }
+// GetId returns UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty.Id, and is useful for accessing the field via an interface.
+func (v *UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty) GetId() string { return v.Id }
 
-// GetCity returns __CreateUnitMutationInput.City, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetCity() string { return v.City }
+// GetDeleted returns UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty.Deleted, and is useful for accessing the field via an interface.
+func (v *UpdateDashboardPropertyDeletedMutationUpdateDashboardProperty) GetDeleted() bool {
+	return v.Deleted
+}
 
-// GetState returns __CreateUnitMutationInput.State, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetState() string { return v.State }
+// UpdateDashboardPropertyMutationResponse is returned by UpdateDashboardPropertyMutation on success.
+type UpdateDashboardPropertyMutationResponse struct {
+	UpdateDashboardProperty UpdateDashboardPropertyMutationUpdateDashboardProperty `json:"updateDashboardProperty"`
+}
 
-// GetStreet1 returns __CreateUnitMutationInput.Street1, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetStreet1() string { return v.Street1 }
+// GetUpdateDashboardProperty returns UpdateDashboardPropertyMutationResponse.UpdateDashboardProperty, and is useful for accessing the field via an interface.
+func (v *UpdateDashboardPropertyMutationResponse) GetUpdateDashboardProperty() UpdateDashboardPropertyMutationUpdateDashboardProperty {
+	return v.UpdateDashboardProperty
+}
 
-// GetStreet2 returns __CreateUnitMutationInput.Street2, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetStreet2() string { return v.Street2 }
+// UpdateDashboardPropertyMutationUpdateDashboardProperty includes the requested fields of the GraphQL type DashboardProperty.
+type UpdateDashboardPropertyMutationUpdateDashboardProperty struct {
+	Id       string `json:"id"`
+	HoaMuted bool   `json:"hoaMuted"`
+}
 
-// GetZipCode returns __CreateUnitMutationInput.ZipCode, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetZipCode() string { return v.ZipCode }
+// GetId returns UpdateDashboardPropertyMutationUpdateDashboardProperty.Id, and is useful for accessing the field via an interface.
+func (v *UpdateDashboardPropertyMutationUpdateDashboardProperty) GetId() string { return v.Id }
 
-// GetBedrooms returns __CreateUnitMutationInput.Bedrooms, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetBedrooms() int { return v.Bedrooms }
+// GetHoaMuted returns UpdateDashboardPropertyMutationUpdateDashboardProperty.HoaMuted, and is useful for accessing the field via an interface.
+func (v *UpdateDashboardPropertyMutationUpdateDashboardProperty) GetHoaMuted() bool {
+	return v.HoaMuted
+}
 
-// GetBathrooms returns __CreateUnitMutationInput.Bathrooms, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetBathrooms() float64 { return v.Bathrooms }
+// __CreateDashboardPropertyMutationInput is used internally by genqlient
+type __CreateDashboardPropertyMutationInput struct {
+	Id                 string   `json:"id"`
+	Name               string   `json:"name"`
+	Owner              string   `json:"owner"`
+	City               string   `json:"city"`
+	State              string   `json:"state"`
+	Street1            string   `json:"street1"`
+	Street2            string   `json:"street2"`
+	ZipCode            string   `json:"zipCode"`
+	PropertyId         string   `json:"propertyId"`
+	PmId               string   `json:"pmId"`
+	ReadPermissions    []string `json:"readPermissions"`
+	ManagedByEmail     string   `json:"managedByEmail"`
+	ManagedByFirstName string   `json:"managedByFirstName"`
+	ManagedByLastName  string   `json:"managedByLastName"`
+	PropertyAddedDate  string   `json:"propertyAddedDate"`
+}
 
-// GetSqft returns __CreateUnitMutationInput.Sqft, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetSqft() int { return v.Sqft }
+// GetId returns __CreateDashboardPropertyMutationInput.Id, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetId() string { return v.Id }
 
-// GetIsVacant returns __CreateUnitMutationInput.IsVacant, and is useful for accessing the field via an interface.
-func (v *__CreateUnitMutationInput) GetIsVacant() bool { return v.IsVacant }
+// GetName returns __CreateDashboardPropertyMutationInput.Name, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetName() string { return v.Name }
 
-// __DeletePropertyMutationInput is used internally by genqlient
-type __DeletePropertyMutationInput struct {
+// GetOwner returns __CreateDashboardPropertyMutationInput.Owner, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetOwner() string { return v.Owner }
+
+// GetCity returns __CreateDashboardPropertyMutationInput.City, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetCity() string { return v.City }
+
+// GetState returns __CreateDashboardPropertyMutationInput.State, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetState() string { return v.State }
+
+// GetStreet1 returns __CreateDashboardPropertyMutationInput.Street1, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetStreet1() string { return v.Street1 }
+
+// GetStreet2 returns __CreateDashboardPropertyMutationInput.Street2, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetStreet2() string { return v.Street2 }
+
+// GetZipCode returns __CreateDashboardPropertyMutationInput.ZipCode, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetZipCode() string { return v.ZipCode }
+
+// GetPropertyId returns __CreateDashboardPropertyMutationInput.PropertyId, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetPropertyId() string { return v.PropertyId }
+
+// GetPmId returns __CreateDashboardPropertyMutationInput.PmId, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetPmId() string { return v.PmId }
+
+// GetReadPermissions returns __CreateDashboardPropertyMutationInput.ReadPermissions, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetReadPermissions() []string {
+	return v.ReadPermissions
+}
+
+// GetManagedByEmail returns __CreateDashboardPropertyMutationInput.ManagedByEmail, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetManagedByEmail() string { return v.ManagedByEmail }
+
+// GetManagedByFirstName returns __CreateDashboardPropertyMutationInput.ManagedByFirstName, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetManagedByFirstName() string {
+	return v.ManagedByFirstName
+}
+
+// GetManagedByLastName returns __CreateDashboardPropertyMutationInput.ManagedByLastName, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetManagedByLastName() string {
+	return v.ManagedByLastName
+}
+
+// GetPropertyAddedDate returns __CreateDashboardPropertyMutationInput.PropertyAddedDate, and is useful for accessing the field via an interface.
+func (v *__CreateDashboardPropertyMutationInput) GetPropertyAddedDate() string {
+	return v.PropertyAddedDate
+}
+
+// __DeleteDashboardPropertyMutationInput is used internally by genqlient
+type __DeleteDashboardPropertyMutationInput struct {
 	Id string `json:"id"`
 }
 
-// GetId returns __DeletePropertyMutationInput.Id, and is useful for accessing the field via an interface.
-func (v *__DeletePropertyMutationInput) GetId() string { return v.Id }
+// GetId returns __DeleteDashboardPropertyMutationInput.Id, and is useful for accessing the field via an interface.
+func (v *__DeleteDashboardPropertyMutationInput) GetId() string { return v.Id }
 
-// __GetPropertyInput is used internally by genqlient
-type __GetPropertyInput struct {
+// __GetDashboardPropertiesInput is used internally by genqlient
+type __GetDashboardPropertiesInput struct {
 	Id string `json:"id"`
 }
 
-// GetId returns __GetPropertyInput.Id, and is useful for accessing the field via an interface.
-func (v *__GetPropertyInput) GetId() string { return v.Id }
+// GetId returns __GetDashboardPropertiesInput.Id, and is useful for accessing the field via an interface.
+func (v *__GetDashboardPropertiesInput) GetId() string { return v.Id }
 
-// __ListOwnerPropertiesQueryInput is used internally by genqlient
-type __ListOwnerPropertiesQueryInput struct {
+// __GetDashboardPropertyInput is used internally by genqlient
+type __GetDashboardPropertyInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __GetDashboardPropertyInput.Id, and is useful for accessing the field via an interface.
+func (v *__GetDashboardPropertyInput) GetId() string { return v.Id }
+
+// __ListOwnerDashboardPropertiesQueryInput is used internally by genqlient
+type __ListOwnerDashboardPropertiesQueryInput struct {
 	Owner string `json:"owner"`
 }
 
-// GetOwner returns __ListOwnerPropertiesQueryInput.Owner, and is useful for accessing the field via an interface.
-func (v *__ListOwnerPropertiesQueryInput) GetOwner() string { return v.Owner }
+// GetOwner returns __ListOwnerDashboardPropertiesQueryInput.Owner, and is useful for accessing the field via an interface.
+func (v *__ListOwnerDashboardPropertiesQueryInput) GetOwner() string { return v.Owner }
 
-// __ListUnitsInput is used internally by genqlient
-type __ListUnitsInput struct {
-	Id string `json:"id"`
+// __UpdateDashboardPropertyDeletedMutationInput is used internally by genqlient
+type __UpdateDashboardPropertyDeletedMutationInput struct {
+	Id      string `json:"id"`
+	Deleted bool   `json:"deleted"`
 }
 
-// GetId returns __ListUnitsInput.Id, and is useful for accessing the field via an interface.
-func (v *__ListUnitsInput) GetId() string { return v.Id }
+// GetId returns __UpdateDashboardPropertyDeletedMutationInput.Id, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyDeletedMutationInput) GetId() string { return v.Id }
 
-// __UpdatePropertyMutationInput is used internally by genqlient
-type __UpdatePropertyMutationInput struct {
-	Id               string       `json:"id"`
-	Bedrooms         int          `json:"bedrooms"`
-	Bathrooms        float64      `json:"bathrooms"`
-	Sqft             int          `json:"sqft"`
-	IsVacant         bool         `json:"isVacant"`
-	PropertyType     PropertyType `json:"propertyType"`
-	TotalUnits       int          `json:"totalUnits"`
-	TotalVacantUnits int          `json:"totalVacantUnits"`
+// GetDeleted returns __UpdateDashboardPropertyDeletedMutationInput.Deleted, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyDeletedMutationInput) GetDeleted() bool { return v.Deleted }
+
+// __UpdateDashboardPropertyMutationInput is used internally by genqlient
+type __UpdateDashboardPropertyMutationInput struct {
+	Id                 string  `json:"id"`
+	Name               string  `json:"name"`
+	HoaMuted           *bool   `json:"hoaMuted"`
+	ManagedByEmail     string  `json:"managedByEmail"`
+	ManagedByFirstName string  `json:"managedByFirstName"`
+	ManagedByLastName  string  `json:"managedByLastName"`
+	PropertyAddedDate  *string `json:"propertyAddedDate"`
 }
 
-// GetId returns __UpdatePropertyMutationInput.Id, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetId() string { return v.Id }
+// GetId returns __UpdateDashboardPropertyMutationInput.Id, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyMutationInput) GetId() string { return v.Id }
 
-// GetBedrooms returns __UpdatePropertyMutationInput.Bedrooms, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetBedrooms() int { return v.Bedrooms }
+// GetName returns __UpdateDashboardPropertyMutationInput.Name, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyMutationInput) GetName() string { return v.Name }
 
-// GetBathrooms returns __UpdatePropertyMutationInput.Bathrooms, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetBathrooms() float64 { return v.Bathrooms }
+// GetHoaMuted returns __UpdateDashboardPropertyMutationInput.HoaMuted, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyMutationInput) GetHoaMuted() *bool { return v.HoaMuted }
 
-// GetSqft returns __UpdatePropertyMutationInput.Sqft, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetSqft() int { return v.Sqft }
+// GetManagedByEmail returns __UpdateDashboardPropertyMutationInput.ManagedByEmail, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyMutationInput) GetManagedByEmail() string { return v.ManagedByEmail }
 
-// GetIsVacant returns __UpdatePropertyMutationInput.IsVacant, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetIsVacant() bool { return v.IsVacant }
-
-// GetPropertyType returns __UpdatePropertyMutationInput.PropertyType, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetPropertyType() PropertyType { return v.PropertyType }
-
-// GetTotalUnits returns __UpdatePropertyMutationInput.TotalUnits, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetTotalUnits() int { return v.TotalUnits }
-
-// GetTotalVacantUnits returns __UpdatePropertyMutationInput.TotalVacantUnits, and is useful for accessing the field via an interface.
-func (v *__UpdatePropertyMutationInput) GetTotalVacantUnits() int { return v.TotalVacantUnits }
-
-// __UpdateUnitMutationInput is used internally by genqlient
-type __UpdateUnitMutationInput struct {
-	Id              string  `json:"id"`
-	PropertyUnitsId string  `json:"propertyUnitsId"`
-	Bedrooms        int     `json:"bedrooms"`
-	Bathrooms       float64 `json:"bathrooms"`
-	Sqft            int     `json:"sqft"`
-	IsVacant        bool    `json:"isVacant"`
+// GetManagedByFirstName returns __UpdateDashboardPropertyMutationInput.ManagedByFirstName, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyMutationInput) GetManagedByFirstName() string {
+	return v.ManagedByFirstName
 }
 
-// GetId returns __UpdateUnitMutationInput.Id, and is useful for accessing the field via an interface.
-func (v *__UpdateUnitMutationInput) GetId() string { return v.Id }
+// GetManagedByLastName returns __UpdateDashboardPropertyMutationInput.ManagedByLastName, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyMutationInput) GetManagedByLastName() string {
+	return v.ManagedByLastName
+}
 
-// GetPropertyUnitsId returns __UpdateUnitMutationInput.PropertyUnitsId, and is useful for accessing the field via an interface.
-func (v *__UpdateUnitMutationInput) GetPropertyUnitsId() string { return v.PropertyUnitsId }
+// GetPropertyAddedDate returns __UpdateDashboardPropertyMutationInput.PropertyAddedDate, and is useful for accessing the field via an interface.
+func (v *__UpdateDashboardPropertyMutationInput) GetPropertyAddedDate() *string {
+	return v.PropertyAddedDate
+}
 
-// GetBedrooms returns __UpdateUnitMutationInput.Bedrooms, and is useful for accessing the field via an interface.
-func (v *__UpdateUnitMutationInput) GetBedrooms() int { return v.Bedrooms }
-
-// GetBathrooms returns __UpdateUnitMutationInput.Bathrooms, and is useful for accessing the field via an interface.
-func (v *__UpdateUnitMutationInput) GetBathrooms() float64 { return v.Bathrooms }
-
-// GetSqft returns __UpdateUnitMutationInput.Sqft, and is useful for accessing the field via an interface.
-func (v *__UpdateUnitMutationInput) GetSqft() int { return v.Sqft }
-
-// GetIsVacant returns __UpdateUnitMutationInput.IsVacant, and is useful for accessing the field via an interface.
-func (v *__UpdateUnitMutationInput) GetIsVacant() bool { return v.IsVacant }
-
-func CreatePropertyMutation(
+func CreateDashboardPropertyMutation(
 	ctx context.Context,
 	client graphql.Client,
 	id string,
+	name string,
 	owner string,
 	city string,
 	state string,
 	street1 string,
 	street2 string,
 	zipCode string,
-	bedrooms int,
-	bathrooms float64,
-	sqft int,
-	isVacant bool,
-	propertyType PropertyType,
-	totalUnits int,
-	totalVacantUnits int,
-) (*CreatePropertyMutationResponse, error) {
+	propertyId string,
+	pmId string,
+	readPermissions []string,
+	managedByEmail string,
+	managedByFirstName string,
+	managedByLastName string,
+	propertyAddedDate string,
+) (*CreateDashboardPropertyMutationResponse, error) {
 	req := &graphql.Request{
-		OpName: "CreatePropertyMutation",
+		OpName: "CreateDashboardPropertyMutation",
 		Query: `
-mutation CreatePropertyMutation ($id: ID, $owner: String!, $city: String!, $state: String!, $street1: String!, $street2: String, $zipCode: String!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean, $propertyType: PropertyType, $totalUnits: Int, $totalVacantUnits: Int) {
-	createProperty(input: {address:{city:$city,state:$state,street1:$street1,street2:$street2,zipCode:$zipCode},owner:$owner,id:$id,bedrooms:$bedrooms,bathrooms:$bathrooms,sqft:$sqft,isVacant:$isVacant,propertyType:$propertyType,totalUnits:$totalUnits,totalVacantUnits:$totalVacantUnits}) {
+mutation CreateDashboardPropertyMutation ($id: ID, $name: String!, $owner: String!, $city: String!, $state: String!, $street1: String!, $street2: String!, $zipCode: String!, $propertyId: ID!, $pmId: String!, $readPermissions: [String], $managedByEmail: String, $managedByFirstName: String, $managedByLastName: String, $propertyAddedDate: AWSDate) {
+	createDashboardProperty(input: {address:{city:$city,state:$state,street1:$street1,street2:$street2,zipCode:$zipCode},name:$name,owner:$owner,id:$id,propertyDashboardPropertyId:$propertyId,pmId:$pmId,readPermissions:$readPermissions,managedBy:{firstName:$managedByFirstName,lastName:$managedByLastName,email:$managedByEmail},propertyAddedDate:$propertyAddedDate}) {
 		id
-		bedrooms
+	}
+}
+`,
+		Variables: &__CreateDashboardPropertyMutationInput{
+			Id:                 id,
+			Name:               name,
+			Owner:              owner,
+			City:               city,
+			State:              state,
+			Street1:            street1,
+			Street2:            street2,
+			ZipCode:            zipCode,
+			PropertyId:         propertyId,
+			PmId:               pmId,
+			ReadPermissions:    readPermissions,
+			ManagedByEmail:     managedByEmail,
+			ManagedByFirstName: managedByFirstName,
+			ManagedByLastName:  managedByLastName,
+			PropertyAddedDate:  propertyAddedDate,
+		},
+	}
+	var err error
+
+	var data CreateDashboardPropertyMutationResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
+	)
+
+	return &data, err
+}
+
+func DeleteDashboardPropertyMutation(
+	ctx context.Context,
+	client graphql.Client,
+	id string,
+) (*DeleteDashboardPropertyMutationResponse, error) {
+	req := &graphql.Request{
+		OpName: "DeleteDashboardPropertyMutation",
+		Query: `
+mutation DeleteDashboardPropertyMutation ($id: ID!) {
+	deleteDashboardProperty(input: {id:$id}) {
+		id
+	}
+}
+`,
+		Variables: &__DeleteDashboardPropertyMutationInput{
+			Id: id,
+		},
+	}
+	var err error
+
+	var data DeleteDashboardPropertyMutationResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
+	)
+
+	return &data, err
+}
+
+func GetDashboardProperties(
+	ctx context.Context,
+	client graphql.Client,
+	id string,
+) (*GetDashboardPropertiesResponse, error) {
+	req := &graphql.Request{
+		OpName: "GetDashboardProperties",
+		Query: `
+query GetDashboardProperties ($id: ID!) {
+	listDashboardProperties(limit: 1, id: $id) {
+		items {
+			id
+			owner
+			address {
+				city
+				state
+				street1
+				street2
+				zipCode
+			}
+			propertyAddedDate
+			name
+			propertyDashboardPropertyId
+			pmId
+			hoaMuted
+			managedBy {
+				firstName
+				lastName
+				email
+			}
+			property {
+				bedrooms
+				bathrooms
+				sqft
+				isVacant
+			}
+			deleted
+		}
+	}
+}
+`,
+		Variables: &__GetDashboardPropertiesInput{
+			Id: id,
+		},
+	}
+	var err error
+
+	var data GetDashboardPropertiesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
+	)
+
+	return &data, err
+}
+
+func GetDashboardProperty(
+	ctx context.Context,
+	client graphql.Client,
+	id string,
+) (*GetDashboardPropertyResponse, error) {
+	req := &graphql.Request{
+		OpName: "GetDashboardProperty",
+		Query: `
+query GetDashboardProperty ($id: ID!) {
+	getDashboardProperty(id: $id) {
+		address {
+			city
+			state
+			street1
+			street2
+			zipCode
+		}
+		hoaMuted
+		propertyAddedDate
+		id
+		name
 		owner
-		bathrooms
-		sqft
-		totalUnits
-		totalVacantUnits
-		isVacant
-		address {
-			city
-			state
-			street1
-			zipCode
-		}
-		propertyType
-	}
-}
-`,
-		Variables: &__CreatePropertyMutationInput{
-			Id:               id,
-			Owner:            owner,
-			City:             city,
-			State:            state,
-			Street1:          street1,
-			Street2:          street2,
-			ZipCode:          zipCode,
-			Bedrooms:         bedrooms,
-			Bathrooms:        bathrooms,
-			Sqft:             sqft,
-			IsVacant:         isVacant,
-			PropertyType:     propertyType,
-			TotalUnits:       totalUnits,
-			TotalVacantUnits: totalVacantUnits,
-		},
-	}
-	var err error
-
-	var data CreatePropertyMutationResponse
-	resp := &graphql.Response{Data: &data}
-
-	err = client.MakeRequest(
-		ctx,
-		req,
-		resp,
-	)
-
-	return &data, err
-}
-
-func CreateUnitMutation(
-	ctx context.Context,
-	client graphql.Client,
-	id string,
-	propertyUnitsId string,
-	city string,
-	state string,
-	street1 string,
-	street2 string,
-	zipCode string,
-	bedrooms int,
-	bathrooms float64,
-	sqft int,
-	isVacant bool,
-) (*CreateUnitMutationResponse, error) {
-	req := &graphql.Request{
-		OpName: "CreateUnitMutation",
-		Query: `
-mutation CreateUnitMutation ($id: ID, $propertyUnitsId: ID!, $city: String!, $state: String!, $street1: String!, $street2: String, $zipCode: String!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean) {
-	createUnit(input: {address:{city:$city,state:$state,street1:$street1,street2:$street2,zipCode:$zipCode},id:$id,propertyUnitsId:$propertyUnitsId,bedrooms:$bedrooms,bathrooms:$bathrooms,sqft:$sqft,isVacant:$isVacant}) {
-		id
-		propertyUnitsId
-		bedrooms
-		bathrooms
-		sqft
-		isVacant
-		address {
-			city
-			state
-			street1
-			zipCode
-		}
-	}
-}
-`,
-		Variables: &__CreateUnitMutationInput{
-			Id:              id,
-			PropertyUnitsId: propertyUnitsId,
-			City:            city,
-			State:           state,
-			Street1:         street1,
-			Street2:         street2,
-			ZipCode:         zipCode,
-			Bedrooms:        bedrooms,
-			Bathrooms:       bathrooms,
-			Sqft:            sqft,
-			IsVacant:        isVacant,
-		},
-	}
-	var err error
-
-	var data CreateUnitMutationResponse
-	resp := &graphql.Response{Data: &data}
-
-	err = client.MakeRequest(
-		ctx,
-		req,
-		resp,
-	)
-
-	return &data, err
-}
-
-func DeletePropertyMutation(
-	ctx context.Context,
-	client graphql.Client,
-	id string,
-) (*DeletePropertyMutationResponse, error) {
-	req := &graphql.Request{
-		OpName: "DeletePropertyMutation",
-		Query: `
-mutation DeletePropertyMutation ($id: ID!) {
-	deleteProperty(input: {id:$id}) {
-		id
-	}
-}
-`,
-		Variables: &__DeletePropertyMutationInput{
-			Id: id,
-		},
-	}
-	var err error
-
-	var data DeletePropertyMutationResponse
-	resp := &graphql.Response{Data: &data}
-
-	err = client.MakeRequest(
-		ctx,
-		req,
-		resp,
-	)
-
-	return &data, err
-}
-
-func GetProperty(
-	ctx context.Context,
-	client graphql.Client,
-	id string,
-) (*GetPropertyResponse, error) {
-	req := &graphql.Request{
-		OpName: "GetProperty",
-		Query: `
-query GetProperty ($id: ID!) {
-	listProperties(limit: 20000, id: $id) {
-		items {
-			id
-			bedrooms
+		pmId
+		property {
 			bathrooms
-			owner
-			sqft
+			bedrooms
 			isVacant
-			address {
-				city
-				state
-				street1
-				zipCode
-			}
-			propertyType
+			sqft
 		}
+		managedBy {
+			firstName
+			lastName
+			email
+		}
+		propertyDashboardPropertyId
+		deleted
 	}
 }
 `,
-		Variables: &__GetPropertyInput{
+		Variables: &__GetDashboardPropertyInput{
 			Id: id,
 		},
 	}
 	var err error
 
-	var data GetPropertyResponse
+	var data GetDashboardPropertyResponse
 	resp := &graphql.Response{Data: &data}
 
 	err = client.MakeRequest(
@@ -973,36 +872,44 @@ query GetProperty ($id: ID!) {
 	return &data, err
 }
 
-func ListOwnerPropertiesQuery(
+func ListOwnerDashboardPropertiesQuery(
 	ctx context.Context,
 	client graphql.Client,
 	owner string,
-) (*ListOwnerPropertiesQueryResponse, error) {
+) (*ListOwnerDashboardPropertiesQueryResponse, error) {
 	req := &graphql.Request{
-		OpName: "ListOwnerPropertiesQuery",
+		OpName: "ListOwnerDashboardPropertiesQuery",
 		Query: `
-query ListOwnerPropertiesQuery ($owner: String!) {
-	listProperties(limit: 20000, filter: {owner:{eq:$owner}}) {
+query ListOwnerDashboardPropertiesQuery ($owner: String!) {
+	listDashboardPropertyByOwner(owner: $owner) {
 		items {
 			owner
 			id
+			managedBy {
+				firstName
+				lastName
+				email
+			}
+			propertyAddedDate
 			address {
 				city
 				state
 				street1
+				street2
 				zipCode
 			}
+			deleted
 		}
 	}
 }
 `,
-		Variables: &__ListOwnerPropertiesQueryInput{
+		Variables: &__ListOwnerDashboardPropertiesQueryInput{
 			Owner: owner,
 		},
 	}
 	var err error
 
-	var data ListOwnerPropertiesQueryResponse
+	var data ListOwnerDashboardPropertiesQueryResponse
 	resp := &graphql.Response{Data: &data}
 
 	err = client.MakeRequest(
@@ -1014,100 +921,30 @@ query ListOwnerPropertiesQuery ($owner: String!) {
 	return &data, err
 }
 
-func ListUnits(
+func UpdateDashboardPropertyDeletedMutation(
 	ctx context.Context,
 	client graphql.Client,
 	id string,
-) (*ListUnitsResponse, error) {
+	deleted bool,
+) (*UpdateDashboardPropertyDeletedMutationResponse, error) {
 	req := &graphql.Request{
-		OpName: "ListUnits",
+		OpName: "UpdateDashboardPropertyDeletedMutation",
 		Query: `
-query ListUnits ($id: ID!) {
-	listUnits(limit: 1, id: $id) {
-		items {
-			id
-			propertyUnitsId
-			bedrooms
-			bathrooms
-			sqft
-			isVacant
-			address {
-				city
-				state
-				street1
-				zipCode
-			}
-		}
-	}
-}
-`,
-		Variables: &__ListUnitsInput{
-			Id: id,
-		},
-	}
-	var err error
-
-	var data ListUnitsResponse
-	resp := &graphql.Response{Data: &data}
-
-	err = client.MakeRequest(
-		ctx,
-		req,
-		resp,
-	)
-
-	return &data, err
-}
-
-func UpdatePropertyMutation(
-	ctx context.Context,
-	client graphql.Client,
-	id string,
-	bedrooms int,
-	bathrooms float64,
-	sqft int,
-	isVacant bool,
-	propertyType PropertyType,
-	totalUnits int,
-	totalVacantUnits int,
-) (*UpdatePropertyMutationResponse, error) {
-	req := &graphql.Request{
-		OpName: "UpdatePropertyMutation",
-		Query: `
-mutation UpdatePropertyMutation ($id: ID!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean, $propertyType: PropertyType, $totalUnits: Int, $totalVacantUnits: Int) {
-	updateProperty(input: {id:$id,bedrooms:$bedrooms,bathrooms:$bathrooms,sqft:$sqft,isVacant:$isVacant,propertyType:$propertyType,totalUnits:$totalUnits,totalVacantUnits:$totalVacantUnits}) {
+mutation UpdateDashboardPropertyDeletedMutation ($id: ID!, $deleted: Boolean) {
+	updateDashboardProperty(input: {id:$id,deleted:$deleted}) {
 		id
-		bedrooms
-		owner
-		bathrooms
-		totalUnits
-		totalVacantUnits
-		sqft
-		isVacant
-		address {
-			city
-			state
-			street1
-			zipCode
-		}
-		propertyType
+		deleted
 	}
 }
 `,
-		Variables: &__UpdatePropertyMutationInput{
-			Id:               id,
-			Bedrooms:         bedrooms,
-			Bathrooms:        bathrooms,
-			Sqft:             sqft,
-			IsVacant:         isVacant,
-			PropertyType:     propertyType,
-			TotalUnits:       totalUnits,
-			TotalVacantUnits: totalVacantUnits,
+		Variables: &__UpdateDashboardPropertyDeletedMutationInput{
+			Id:      id,
+			Deleted: deleted,
 		},
 	}
 	var err error
 
-	var data UpdatePropertyMutationResponse
+	var data UpdateDashboardPropertyDeletedMutationResponse
 	resp := &graphql.Response{Data: &data}
 
 	err = client.MakeRequest(
@@ -1119,48 +956,40 @@ mutation UpdatePropertyMutation ($id: ID!, $bedrooms: Int, $bathrooms: Float, $s
 	return &data, err
 }
 
-func UpdateUnitMutation(
+func UpdateDashboardPropertyMutation(
 	ctx context.Context,
 	client graphql.Client,
 	id string,
-	propertyUnitsId string,
-	bedrooms int,
-	bathrooms float64,
-	sqft int,
-	isVacant bool,
-) (*UpdateUnitMutationResponse, error) {
+	name string,
+	hoaMuted *bool,
+	managedByEmail string,
+	managedByFirstName string,
+	managedByLastName string,
+	propertyAddedDate *string,
+) (*UpdateDashboardPropertyMutationResponse, error) {
 	req := &graphql.Request{
-		OpName: "UpdateUnitMutation",
+		OpName: "UpdateDashboardPropertyMutation",
 		Query: `
-mutation UpdateUnitMutation ($id: ID!, $propertyUnitsId: ID!, $bedrooms: Int, $bathrooms: Float, $sqft: Int, $isVacant: Boolean) {
-	updateUnit(input: {id:$id,propertyUnitsId:$propertyUnitsId,bedrooms:$bedrooms,bathrooms:$bathrooms,sqft:$sqft,isVacant:$isVacant}) {
+mutation UpdateDashboardPropertyMutation ($id: ID!, $name: String!, $hoaMuted: Boolean, $managedByEmail: String, $managedByFirstName: String, $managedByLastName: String, $propertyAddedDate: AWSDate) {
+	updateDashboardProperty(input: {name:$name,id:$id,hoaMuted:$hoaMuted,managedBy:{firstName:$managedByFirstName,lastName:$managedByLastName,email:$managedByEmail},propertyAddedDate:$propertyAddedDate}) {
 		id
-		propertyUnitsId
-		bedrooms
-		bathrooms
-		sqft
-		isVacant
-		address {
-			city
-			state
-			street1
-			zipCode
-		}
+		hoaMuted
 	}
 }
 `,
-		Variables: &__UpdateUnitMutationInput{
-			Id:              id,
-			PropertyUnitsId: propertyUnitsId,
-			Bedrooms:        bedrooms,
-			Bathrooms:       bathrooms,
-			Sqft:            sqft,
-			IsVacant:        isVacant,
+		Variables: &__UpdateDashboardPropertyMutationInput{
+			Id:                 id,
+			Name:               name,
+			HoaMuted:           hoaMuted,
+			ManagedByEmail:     managedByEmail,
+			ManagedByFirstName: managedByFirstName,
+			ManagedByLastName:  managedByLastName,
+			PropertyAddedDate:  propertyAddedDate,
 		},
 	}
 	var err error
 
-	var data UpdateUnitMutationResponse
+	var data UpdateDashboardPropertyMutationResponse
 	resp := &graphql.Response{Data: &data}
 
 	err = client.MakeRequest(
